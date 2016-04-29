@@ -9,7 +9,7 @@ draft: false
 
 There was an interesting question on PRSPCT-L a few weeks ago:
 
-> Do you know of or have experience with demographic modeling and data appends that help > predict a donor’s preferred giving method (i.e., event, direct mail, online, etc.)? 
+> Do you know of or have experience with demographic modeling and data appends that help predict a donor’s preferred giving method (i.e., event, direct mail, online, etc.)? 
 
 I thought I would take a minute to look into this.  I actually couldn't initially think of which variables to include aside from age.  My starting point was looking at those that made gift by check through the mail, online, over the phone or in person during this fiscal year.  I was evaluating the data at the household level so gifts from married households only count once.
 
@@ -28,7 +28,7 @@ I eventually choose:
     + type2 = 3 means not married and constituent is female
     + type2 = 4 means company
     + type2 = 5 means foundation
-    + type2 = 6 means missing inforation or other
+    + type2 = 6 means missing information or other
 * phone: do they have a phone number in our system or not
 * email: do they have an email in our system or not
 * mail: do they have a good mailing address in our system or not
@@ -46,7 +46,7 @@ I eventually choose:
     + 3 = everyone else
 * Lastly, I added a count of the number of solicitations they received by type
 
-My approach to problems like this is to get a decent sized set of data points like this together based on intuition basically and then create a really quick model.  I will skip the modelling code here for now but it will be in my fundraising analytics folder.
+My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it will be in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder.
 
 
 ```{r warning=FALSE, message=FALSE, echo=FALSE}
@@ -55,11 +55,11 @@ library(xgboost)
 library(Matrix)
 library(MLmetrics)
 library(ggplot2)
-
-setwd("C:/Users/pawlusm/Desktop")
+library(RCurl)
 
 ## read in data set
-gv <- fread("giving_vehicle.csv") 
+x <- getURL("https://raw.githubusercontent.com/michaelpawlus/fundraising_analytics/master/giving_method_analysis/giving_vehicle.csv")
+gv <- fread(x)
 
 
 ## characters to integers
@@ -91,7 +91,7 @@ target <- train[,method]
 mtrain <- sparse.model.matrix(method ~ ., data = train[,names(train)[c(2:ncol(train))], with=FALSE])
 
 ## one more split for a holdout set for xgboost
-nrow(mtrain)
+#nrow(mtrain)
 h<-sample(nrow(mtrain),nrow(mtrain)*0.2) 
 
 ## create dense matrices for xgboost
@@ -116,7 +116,7 @@ param <- list(  objective           = "multi:softprob",
 clf <- xgb.train(   params              = param, 
                     data                = dtrain, 
                     nrounds             = 10000, 
-                    verbose             = 2,
+                    verbose             = 0,
                     early.stop.round    = 50,
                     watchlist           = watchlist,
                     maximize            = FALSE
@@ -131,13 +131,13 @@ importance_matrix <- xgb.importance(names, model = clf)
 
 Once the model is done, I like to look at the importance of the features included:
 
-```{r}
+```{r echo=FALSE}
 xgb.plot.importance(importance_matrix[1:10,])
 ```
 
-We can see that age does matter as we might expect and also the number of solicitations that we send.
+We can see that the various solicitation counts and age seem to have the biggest impact so we can start there.
 
-```{r}
+```{r echo=FALSE}
 mtest <- sparse.model.matrix(method ~ ., data = test[,names(test)[c(2:ncol(test))], with=FALSE])
 
 preds <- predict(clf, mtest)
@@ -159,15 +159,15 @@ MultiLogLoss(pred$target, pred[,2:5])
 
 We are a long way off.
 
-Here is a quick break down for each group.
+Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
 
-The model struggles to identify those that give in person.
+We can see that the model struggles to identify those that give in person.
 
 ```{r echo=FALSE}
 head(pred[pred$target==1,], n=10)
 ```
 
-It does fairly well with those that give over the phone.
+It does fairly well with those that give by sending a check through the mail.
 
 ```{r echo=FALSE}
 head(pred[pred$target==2,], n=10)
@@ -179,7 +179,7 @@ It also is decent at guessing donors who give over the phone.
 head(pred[pred$target==3,], n=10)
 ```
 
-However, it again does not do well with online.
+However, it does not do as well predicting who gives online.
 
 ```{r echo=FALSE}
 head(pred[pred$target==4,], n=10)
@@ -191,7 +191,8 @@ First here is the break down of the number of donors in each category.  It's not
 
 
 ```{r echo=FALSE}
-gv <- fread("giving_vehicle.csv") 
+x <- getURL("https://raw.githubusercontent.com/michaelpawlus/fundraising_analytics/master/giving_method_analysis/giving_vehicle.csv")
+gv <- fread(x)
 
 ggplot(data=gv,aes(x=method)) + geom_bar() + geom_text(stat='count',aes(label=..count..),vjust=-0.5)
 ```
@@ -199,7 +200,7 @@ ggplot(data=gv,aes(x=method)) + geom_bar() + geom_text(stat='count',aes(label=..
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.
 I also feel that every age bracket has a method so this seems useful.
 
-```{r echo=FALSE}
+```{r warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(gv, aes(age, fill = as.factor(method), colour = as.factor(method))) +
   geom_density(alpha = 0.1) +
   xlim(20, 90)

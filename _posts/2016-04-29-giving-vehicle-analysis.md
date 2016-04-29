@@ -9,7 +9,7 @@ draft: false
  
 There was an interesting question on PRSPCT-L a few weeks ago:
  
-> Do you know of or have experience with demographic modeling and data appends that help > predict a donor’s preferred giving method (i.e., event, direct mail, online, etc.)? 
+> Do you know of or have experience with demographic modeling and data appends that help predict a donor’s preferred giving method (i.e., event, direct mail, online, etc.)? 
  
 I thought I would take a minute to look into this.  I actually couldn't initially think of which variables to include aside from age.  My starting point was looking at those that made gift by check through the mail, online, over the phone or in person during this fiscal year.  I was evaluating the data at the household level so gifts from married households only count once.
  
@@ -28,7 +28,7 @@ I eventually choose:
     + type2 = 3 means not married and constituent is female
     + type2 = 4 means company
     + type2 = 5 means foundation
-    + type2 = 6 means missing inforation or other
+    + type2 = 6 means missing information or other
 * phone: do they have a phone number in our system or not
 * email: do they have an email in our system or not
 * mail: do they have a good mailing address in our system or not
@@ -46,993 +46,249 @@ I eventually choose:
     + 3 = everyone else
 * Lastly, I added a count of the number of solicitations they received by type
  
-My approach to problems like this is to get a decent sized set of data points like this together based on intuition basically and then create a really quick model.  I will skip the modelling code here for now but it will be in my fundraising analytics folder.
+My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it will be in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder.
  
  
 
 {% highlight text %}
-## [1] 2148
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [0]	val-mlogloss:1.573203	train-mlogloss:1.565432
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [1]	val-mlogloss:1.540131	train-mlogloss:1.524711
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [2]	val-mlogloss:1.512376	train-mlogloss:1.488557
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [3]	val-mlogloss:1.481203	train-mlogloss:1.450160
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [4]	val-mlogloss:1.451190	train-mlogloss:1.413982
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [5]	val-mlogloss:1.427974	train-mlogloss:1.383705
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [6]	val-mlogloss:1.403725	train-mlogloss:1.348457
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## [7]	val-mlogloss:1.381196	train-mlogloss:1.316518
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [8]	val-mlogloss:1.363959	train-mlogloss:1.291620
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [9]	val-mlogloss:1.350740	train-mlogloss:1.272122
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [10]	val-mlogloss:1.332200	train-mlogloss:1.243804
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 14 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## [11]	val-mlogloss:1.314429	train-mlogloss:1.219759
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [12]	val-mlogloss:1.296415	train-mlogloss:1.194625
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [13]	val-mlogloss:1.280542	train-mlogloss:1.173762
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [14]	val-mlogloss:1.265408	train-mlogloss:1.152522
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 66 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [15]	val-mlogloss:1.251762	train-mlogloss:1.131859
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [16]	val-mlogloss:1.238660	train-mlogloss:1.112600
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [17]	val-mlogloss:1.227792	train-mlogloss:1.097045
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [18]	val-mlogloss:1.214443	train-mlogloss:1.079119
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## [19]	val-mlogloss:1.201978	train-mlogloss:1.061745
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [20]	val-mlogloss:1.193260	train-mlogloss:1.047438
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [21]	val-mlogloss:1.184046	train-mlogloss:1.032102
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [22]	val-mlogloss:1.172815	train-mlogloss:1.015575
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [23]	val-mlogloss:1.164206	train-mlogloss:1.002681
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [24]	val-mlogloss:1.156916	train-mlogloss:0.990220
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 14 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [25]	val-mlogloss:1.150111	train-mlogloss:0.978759
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [26]	val-mlogloss:1.141749	train-mlogloss:0.963865
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [27]	val-mlogloss:1.134323	train-mlogloss:0.952619
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [28]	val-mlogloss:1.126164	train-mlogloss:0.939973
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [29]	val-mlogloss:1.121275	train-mlogloss:0.929384
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [30]	val-mlogloss:1.114381	train-mlogloss:0.916699
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [31]	val-mlogloss:1.108221	train-mlogloss:0.904206
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [32]	val-mlogloss:1.104377	train-mlogloss:0.895642
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## [33]	val-mlogloss:1.099845	train-mlogloss:0.885268
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [34]	val-mlogloss:1.093925	train-mlogloss:0.874094
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [35]	val-mlogloss:1.089966	train-mlogloss:0.865218
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [36]	val-mlogloss:1.085617	train-mlogloss:0.855213
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [37]	val-mlogloss:1.079991	train-mlogloss:0.845563
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [38]	val-mlogloss:1.076938	train-mlogloss:0.837284
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [39]	val-mlogloss:1.073052	train-mlogloss:0.829881
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [40]	val-mlogloss:1.068762	train-mlogloss:0.819878
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [41]	val-mlogloss:1.064631	train-mlogloss:0.812057
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [42]	val-mlogloss:1.062329	train-mlogloss:0.805235
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [43]	val-mlogloss:1.058584	train-mlogloss:0.796397
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [44]	val-mlogloss:1.054710	train-mlogloss:0.787677
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [45]	val-mlogloss:1.052750	train-mlogloss:0.781322
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [46]	val-mlogloss:1.049306	train-mlogloss:0.773480
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [47]	val-mlogloss:1.046119	train-mlogloss:0.767209
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [48]	val-mlogloss:1.043659	train-mlogloss:0.761670
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [49]	val-mlogloss:1.041983	train-mlogloss:0.755324
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [50]	val-mlogloss:1.039943	train-mlogloss:0.749947
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [51]	val-mlogloss:1.037922	train-mlogloss:0.744174
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## [52]	val-mlogloss:1.035310	train-mlogloss:0.737093
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [53]	val-mlogloss:1.032923	train-mlogloss:0.730200
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [54]	val-mlogloss:1.030331	train-mlogloss:0.723759
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [55]	val-mlogloss:1.028020	train-mlogloss:0.717074
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [56]	val-mlogloss:1.025815	train-mlogloss:0.711107
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [57]	val-mlogloss:1.023647	train-mlogloss:0.705290
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [58]	val-mlogloss:1.021937	train-mlogloss:0.699157
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [59]	val-mlogloss:1.020262	train-mlogloss:0.693391
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [60]	val-mlogloss:1.018299	train-mlogloss:0.687218
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [61]	val-mlogloss:1.015800	train-mlogloss:0.682088
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [62]	val-mlogloss:1.014051	train-mlogloss:0.676344
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [63]	val-mlogloss:1.012515	train-mlogloss:0.671776
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [64]	val-mlogloss:1.011644	train-mlogloss:0.667084
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [65]	val-mlogloss:1.011568	train-mlogloss:0.662046
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## [66]	val-mlogloss:1.010706	train-mlogloss:0.657718
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [67]	val-mlogloss:1.009151	train-mlogloss:0.653292
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [68]	val-mlogloss:1.008786	train-mlogloss:0.649644
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [69]	val-mlogloss:1.008092	train-mlogloss:0.645698
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [70]	val-mlogloss:1.007060	train-mlogloss:0.640865
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [71]	val-mlogloss:1.006994	train-mlogloss:0.636372
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [72]	val-mlogloss:1.007140	train-mlogloss:0.632764
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## [73]	val-mlogloss:1.005908	train-mlogloss:0.629421
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [74]	val-mlogloss:1.004676	train-mlogloss:0.625410
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [75]	val-mlogloss:1.004331	train-mlogloss:0.620831
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [76]	val-mlogloss:1.004264	train-mlogloss:0.616860
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [77]	val-mlogloss:1.004418	train-mlogloss:0.613007
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [78]	val-mlogloss:1.004445	train-mlogloss:0.608202
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [79]	val-mlogloss:1.004061	train-mlogloss:0.604551
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## [80]	val-mlogloss:1.003769	train-mlogloss:0.601413
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [81]	val-mlogloss:1.003867	train-mlogloss:0.598077
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [82]	val-mlogloss:1.003706	train-mlogloss:0.594231
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [83]	val-mlogloss:1.003594	train-mlogloss:0.591109
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [84]	val-mlogloss:1.003466	train-mlogloss:0.587887
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [85]	val-mlogloss:1.003714	train-mlogloss:0.585171
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [86]	val-mlogloss:1.003658	train-mlogloss:0.581873
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [87]	val-mlogloss:1.003634	train-mlogloss:0.578812
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 58 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [88]	val-mlogloss:1.003368	train-mlogloss:0.575277
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [89]	val-mlogloss:1.002396	train-mlogloss:0.572484
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [90]	val-mlogloss:1.002701	train-mlogloss:0.569845
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [91]	val-mlogloss:1.002431	train-mlogloss:0.567776
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [92]	val-mlogloss:1.001969	train-mlogloss:0.565637
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [93]	val-mlogloss:1.002082	train-mlogloss:0.562954
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## [94]	val-mlogloss:1.001732	train-mlogloss:0.560262
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## [95]	val-mlogloss:1.002522	train-mlogloss:0.557055
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [96]	val-mlogloss:1.002644	train-mlogloss:0.554409
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 44 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [97]	val-mlogloss:1.002522	train-mlogloss:0.552242
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [98]	val-mlogloss:1.002553	train-mlogloss:0.549445
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [99]	val-mlogloss:1.003066	train-mlogloss:0.547004
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=5
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## [100]	val-mlogloss:1.003302	train-mlogloss:0.544641
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [101]	val-mlogloss:1.003628	train-mlogloss:0.541882
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [102]	val-mlogloss:1.004227	train-mlogloss:0.539655
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [103]	val-mlogloss:1.004366	train-mlogloss:0.537591
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## [104]	val-mlogloss:1.004758	train-mlogloss:0.535562
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [105]	val-mlogloss:1.004941	train-mlogloss:0.533303
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [106]	val-mlogloss:1.004930	train-mlogloss:0.531334
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## [107]	val-mlogloss:1.004433	train-mlogloss:0.529054
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 16 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 56 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## [108]	val-mlogloss:1.005091	train-mlogloss:0.527139
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [109]	val-mlogloss:1.005073	train-mlogloss:0.525149
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [110]	val-mlogloss:1.006056	train-mlogloss:0.523134
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 14 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [111]	val-mlogloss:1.006485	train-mlogloss:0.520845
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## [112]	val-mlogloss:1.006650	train-mlogloss:0.518378
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## [113]	val-mlogloss:1.006793	train-mlogloss:0.516569
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [114]	val-mlogloss:1.007294	train-mlogloss:0.514648
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [115]	val-mlogloss:1.007997	train-mlogloss:0.513256
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## [116]	val-mlogloss:1.008217	train-mlogloss:0.511207
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [117]	val-mlogloss:1.008567	train-mlogloss:0.509393
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [118]	val-mlogloss:1.009230	train-mlogloss:0.507475
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [119]	val-mlogloss:1.009649	train-mlogloss:0.505327
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [120]	val-mlogloss:1.010192	train-mlogloss:0.503393
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [121]	val-mlogloss:1.011044	train-mlogloss:0.501072
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 58 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [122]	val-mlogloss:1.011369	train-mlogloss:0.498824
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [123]	val-mlogloss:1.011305	train-mlogloss:0.497077
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [124]	val-mlogloss:1.011213	train-mlogloss:0.495378
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [125]	val-mlogloss:1.011396	train-mlogloss:0.493962
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 62 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## [126]	val-mlogloss:1.012593	train-mlogloss:0.491165
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [127]	val-mlogloss:1.012689	train-mlogloss:0.489758
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## [128]	val-mlogloss:1.013223	train-mlogloss:0.487591
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## [129]	val-mlogloss:1.014220	train-mlogloss:0.485558
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [130]	val-mlogloss:1.014598	train-mlogloss:0.483741
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## [131]	val-mlogloss:1.014327	train-mlogloss:0.481985
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [132]	val-mlogloss:1.014946	train-mlogloss:0.480168
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 54 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [133]	val-mlogloss:1.015925	train-mlogloss:0.478584
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 50 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 14 extra nodes, 0 pruned nodes ,max_depth=6
-## [134]	val-mlogloss:1.016277	train-mlogloss:0.476949
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [135]	val-mlogloss:1.016478	train-mlogloss:0.475337
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 52 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 24 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## [136]	val-mlogloss:1.016996	train-mlogloss:0.473712
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 20 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## [137]	val-mlogloss:1.017337	train-mlogloss:0.472372
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=5
-## tree prunning end, 1 roots, 42 extra nodes, 0 pruned nodes ,max_depth=6
-## [138]	val-mlogloss:1.017732	train-mlogloss:0.470478
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [139]	val-mlogloss:1.018123	train-mlogloss:0.468766
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 38 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 28 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## [140]	val-mlogloss:1.018608	train-mlogloss:0.467432
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 30 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## [141]	val-mlogloss:1.019266	train-mlogloss:0.466323
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 18 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 36 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 22 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 48 extra nodes, 0 pruned nodes ,max_depth=6
-## [142]	val-mlogloss:1.020258	train-mlogloss:0.464656
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 34 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 40 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## [143]	val-mlogloss:1.020611	train-mlogloss:0.463226
-## tree prunning end, 1 roots, 0 extra nodes, 0 pruned nodes ,max_depth=0
-## tree prunning end, 1 roots, 32 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 26 extra nodes, 0 pruned nodes ,max_depth=6
-## tree prunning end, 1 roots, 46 extra nodes, 0 pruned nodes ,max_depth=6
-## [144]	val-mlogloss:1.021738	train-mlogloss:0.461683
-## Stopping. Best iteration: 95
+## [0]	val-mlogloss:1.582715	train-mlogloss:1.573866
+## [1]	val-mlogloss:1.553963	train-mlogloss:1.538293
+## [2]	val-mlogloss:1.531163	train-mlogloss:1.507515
+## [3]	val-mlogloss:1.508348	train-mlogloss:1.478492
+## [4]	val-mlogloss:1.488688	train-mlogloss:1.452502
+## [5]	val-mlogloss:1.469154	train-mlogloss:1.424387
+## [6]	val-mlogloss:1.444639	train-mlogloss:1.393060
+## [7]	val-mlogloss:1.425079	train-mlogloss:1.363681
+## [8]	val-mlogloss:1.401279	train-mlogloss:1.333201
+## [9]	val-mlogloss:1.380213	train-mlogloss:1.304643
+## [10]	val-mlogloss:1.358288	train-mlogloss:1.275912
+## [11]	val-mlogloss:1.338099	train-mlogloss:1.250834
+## [12]	val-mlogloss:1.319267	train-mlogloss:1.227067
+## [13]	val-mlogloss:1.307815	train-mlogloss:1.208305
+## [14]	val-mlogloss:1.294118	train-mlogloss:1.188139
+## [15]	val-mlogloss:1.281574	train-mlogloss:1.171527
+## [16]	val-mlogloss:1.265494	train-mlogloss:1.150507
+## [17]	val-mlogloss:1.251441	train-mlogloss:1.131359
+## [18]	val-mlogloss:1.237740	train-mlogloss:1.112782
+## [19]	val-mlogloss:1.225983	train-mlogloss:1.096067
+## [20]	val-mlogloss:1.216479	train-mlogloss:1.078800
+## [21]	val-mlogloss:1.203582	train-mlogloss:1.059727
+## [22]	val-mlogloss:1.192012	train-mlogloss:1.042441
+## [23]	val-mlogloss:1.182644	train-mlogloss:1.027063
+## [24]	val-mlogloss:1.173443	train-mlogloss:1.011006
+## [25]	val-mlogloss:1.165647	train-mlogloss:0.998287
+## [26]	val-mlogloss:1.159199	train-mlogloss:0.986045
+## [27]	val-mlogloss:1.152454	train-mlogloss:0.972666
+## [28]	val-mlogloss:1.146981	train-mlogloss:0.961647
+## [29]	val-mlogloss:1.141437	train-mlogloss:0.951718
+## [30]	val-mlogloss:1.135511	train-mlogloss:0.938669
+## [31]	val-mlogloss:1.130664	train-mlogloss:0.927784
+## [32]	val-mlogloss:1.122512	train-mlogloss:0.916208
+## [33]	val-mlogloss:1.115641	train-mlogloss:0.904204
+## [34]	val-mlogloss:1.108702	train-mlogloss:0.893425
+## [35]	val-mlogloss:1.102542	train-mlogloss:0.883271
+## [36]	val-mlogloss:1.096559	train-mlogloss:0.872655
+## [37]	val-mlogloss:1.091135	train-mlogloss:0.862228
+## [38]	val-mlogloss:1.086243	train-mlogloss:0.852190
+## [39]	val-mlogloss:1.080592	train-mlogloss:0.842428
+## [40]	val-mlogloss:1.076474	train-mlogloss:0.833512
+## [41]	val-mlogloss:1.072122	train-mlogloss:0.825842
+## [42]	val-mlogloss:1.066944	train-mlogloss:0.815583
+## [43]	val-mlogloss:1.063194	train-mlogloss:0.806556
+## [44]	val-mlogloss:1.060498	train-mlogloss:0.798484
+## [45]	val-mlogloss:1.056354	train-mlogloss:0.789853
+## [46]	val-mlogloss:1.052711	train-mlogloss:0.782954
+## [47]	val-mlogloss:1.049281	train-mlogloss:0.775809
+## [48]	val-mlogloss:1.047596	train-mlogloss:0.769226
+## [49]	val-mlogloss:1.045115	train-mlogloss:0.763462
+## [50]	val-mlogloss:1.041053	train-mlogloss:0.756046
+## [51]	val-mlogloss:1.038616	train-mlogloss:0.749806
+## [52]	val-mlogloss:1.036706	train-mlogloss:0.744565
+## [53]	val-mlogloss:1.033949	train-mlogloss:0.737677
+## [54]	val-mlogloss:1.031315	train-mlogloss:0.731192
+## [55]	val-mlogloss:1.028992	train-mlogloss:0.725536
+## [56]	val-mlogloss:1.027947	train-mlogloss:0.719509
+## [57]	val-mlogloss:1.025696	train-mlogloss:0.713127
+## [58]	val-mlogloss:1.024304	train-mlogloss:0.707649
+## [59]	val-mlogloss:1.022731	train-mlogloss:0.702363
+## [60]	val-mlogloss:1.021422	train-mlogloss:0.698019
+## [61]	val-mlogloss:1.020482	train-mlogloss:0.694032
+## [62]	val-mlogloss:1.018532	train-mlogloss:0.688700
+## [63]	val-mlogloss:1.017330	train-mlogloss:0.683582
+## [64]	val-mlogloss:1.015654	train-mlogloss:0.677959
+## [65]	val-mlogloss:1.014942	train-mlogloss:0.673141
+## [66]	val-mlogloss:1.013514	train-mlogloss:0.668230
+## [67]	val-mlogloss:1.012823	train-mlogloss:0.662584
+## [68]	val-mlogloss:1.012013	train-mlogloss:0.658104
+## [69]	val-mlogloss:1.010821	train-mlogloss:0.653811
+## [70]	val-mlogloss:1.009808	train-mlogloss:0.649237
+## [71]	val-mlogloss:1.008552	train-mlogloss:0.644443
+## [72]	val-mlogloss:1.008116	train-mlogloss:0.640887
+## [73]	val-mlogloss:1.007359	train-mlogloss:0.635871
+## [74]	val-mlogloss:1.006767	train-mlogloss:0.631848
+## [75]	val-mlogloss:1.007058	train-mlogloss:0.627530
+## [76]	val-mlogloss:1.006605	train-mlogloss:0.623328
+## [77]	val-mlogloss:1.005875	train-mlogloss:0.619960
+## [78]	val-mlogloss:1.005172	train-mlogloss:0.616315
+## [79]	val-mlogloss:1.004530	train-mlogloss:0.611856
+## [80]	val-mlogloss:1.004082	train-mlogloss:0.607820
+## [81]	val-mlogloss:1.003519	train-mlogloss:0.603727
+## [82]	val-mlogloss:1.003457	train-mlogloss:0.599815
+## [83]	val-mlogloss:1.002861	train-mlogloss:0.596066
+## [84]	val-mlogloss:1.002094	train-mlogloss:0.592555
+## [85]	val-mlogloss:1.002167	train-mlogloss:0.588560
+## [86]	val-mlogloss:1.001933	train-mlogloss:0.585276
+## [87]	val-mlogloss:1.001820	train-mlogloss:0.581598
+## [88]	val-mlogloss:1.002201	train-mlogloss:0.578506
+## [89]	val-mlogloss:1.001997	train-mlogloss:0.575658
+## [90]	val-mlogloss:1.001907	train-mlogloss:0.572952
+## [91]	val-mlogloss:1.001312	train-mlogloss:0.569287
+## [92]	val-mlogloss:1.000474	train-mlogloss:0.565991
+## [93]	val-mlogloss:1.000041	train-mlogloss:0.562894
+## [94]	val-mlogloss:1.000085	train-mlogloss:0.560082
+## [95]	val-mlogloss:0.999583	train-mlogloss:0.557834
+## [96]	val-mlogloss:0.999759	train-mlogloss:0.554371
+## [97]	val-mlogloss:0.999530	train-mlogloss:0.551711
+## [98]	val-mlogloss:0.999499	train-mlogloss:0.548754
+## [99]	val-mlogloss:0.999463	train-mlogloss:0.545782
+## [100]	val-mlogloss:0.999917	train-mlogloss:0.543003
+## [101]	val-mlogloss:0.999920	train-mlogloss:0.541009
+## [102]	val-mlogloss:1.000815	train-mlogloss:0.538137
+## [103]	val-mlogloss:1.001245	train-mlogloss:0.535543
+## [104]	val-mlogloss:1.001011	train-mlogloss:0.533015
+## [105]	val-mlogloss:1.001262	train-mlogloss:0.530525
+## [106]	val-mlogloss:1.001334	train-mlogloss:0.527835
+## [107]	val-mlogloss:1.002141	train-mlogloss:0.524959
+## [108]	val-mlogloss:1.002593	train-mlogloss:0.522457
+## [109]	val-mlogloss:1.003325	train-mlogloss:0.520581
+## [110]	val-mlogloss:1.003778	train-mlogloss:0.518056
+## [111]	val-mlogloss:1.004476	train-mlogloss:0.515699
+## [112]	val-mlogloss:1.005165	train-mlogloss:0.513398
+## [113]	val-mlogloss:1.005466	train-mlogloss:0.511497
+## [114]	val-mlogloss:1.006080	train-mlogloss:0.509410
+## [115]	val-mlogloss:1.006884	train-mlogloss:0.506851
+## [116]	val-mlogloss:1.007395	train-mlogloss:0.504609
+## [117]	val-mlogloss:1.008347	train-mlogloss:0.502299
+## [118]	val-mlogloss:1.008790	train-mlogloss:0.500757
+## [119]	val-mlogloss:1.009479	train-mlogloss:0.498467
+## [120]	val-mlogloss:1.009869	train-mlogloss:0.496313
+## [121]	val-mlogloss:1.010233	train-mlogloss:0.494218
+## [122]	val-mlogloss:1.010248	train-mlogloss:0.491609
+## [123]	val-mlogloss:1.011111	train-mlogloss:0.490133
+## [124]	val-mlogloss:1.011427	train-mlogloss:0.488062
+## [125]	val-mlogloss:1.012138	train-mlogloss:0.486207
+## [126]	val-mlogloss:1.012402	train-mlogloss:0.484039
+## [127]	val-mlogloss:1.012948	train-mlogloss:0.482031
+## [128]	val-mlogloss:1.013844	train-mlogloss:0.479843
+## [129]	val-mlogloss:1.014783	train-mlogloss:0.478119
+## [130]	val-mlogloss:1.016260	train-mlogloss:0.476388
+## [131]	val-mlogloss:1.015909	train-mlogloss:0.474518
+## [132]	val-mlogloss:1.016196	train-mlogloss:0.472979
+## [133]	val-mlogloss:1.017033	train-mlogloss:0.471587
+## [134]	val-mlogloss:1.017782	train-mlogloss:0.469493
+## [135]	val-mlogloss:1.018922	train-mlogloss:0.467110
+## [136]	val-mlogloss:1.019096	train-mlogloss:0.465051
+## [137]	val-mlogloss:1.019786	train-mlogloss:0.463397
+## [138]	val-mlogloss:1.020255	train-mlogloss:0.461616
+## [139]	val-mlogloss:1.020720	train-mlogloss:0.459674
+## [140]	val-mlogloss:1.021757	train-mlogloss:0.457790
+## [141]	val-mlogloss:1.022003	train-mlogloss:0.455669
+## [142]	val-mlogloss:1.022917	train-mlogloss:0.453019
+## [143]	val-mlogloss:1.024103	train-mlogloss:0.450660
+## [144]	val-mlogloss:1.024705	train-mlogloss:0.448940
+## [145]	val-mlogloss:1.025474	train-mlogloss:0.447166
+## [146]	val-mlogloss:1.025886	train-mlogloss:0.445536
+## [147]	val-mlogloss:1.026363	train-mlogloss:0.443784
+## [148]	val-mlogloss:1.027045	train-mlogloss:0.442210
+## [149]	val-mlogloss:1.027593	train-mlogloss:0.440786
+## Stopping. Best iteration: 100
 {% endhighlight %}
  
 Once the model is done, I like to look at the importance of the features included:
  
-
-{% highlight r %}
-xgb.plot.importance(importance_matrix[1:10,])
-{% endhighlight %}
-
 ![plot of chunk unnamed-chunk-2](/figures/unnamed-chunk-2-1.png)
  
-We can see that age does matter as we might expect and also the number of solicitations that we send.
+We can see that the various solicitation counts and age seem to have the biggest impact so we can start there.
  
 
-{% highlight r %}
-mtest <- sparse.model.matrix(method ~ ., data = test[,names(test)[c(2:ncol(test))], with=FALSE])
- 
-preds <- predict(clf, mtest)
-preds = matrix(preds,5,length(preds)/5)
-preds = t(preds)
- 
-pred <- as.data.frame(preds)
-pred$id <- test$core_id
-pred$target <- test$method
- 
-names(pred) <- c("int","person","mail","phone","online","id","target")
-{% endhighlight %}
  
 I should note that at present this model is not performing too well but it is just a quick one for now.  Here is the logloss score which is a measure of error.  The closer to 0 the better.
  
 
 {% highlight text %}
-## [1] 23.39736
+## [1] 23.53986
 {% endhighlight %}
  
 We are a long way off.
  
-Here is a quick break down for each group.
+Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
  
-The model struggles to identify those that give in person.
+We can see that the model struggles to identify those that give in person.
  
 
 {% highlight text %}
-##            int     person      mail       phone      online   id target
-## 1  0.003372298 0.04928143 0.9002628 0.005961165 0.041122388  162      1
-## 16 0.005636623 0.06625742 0.5194558 0.031139564 0.377510637 2420      1
-## 18 0.003659413 0.37198728 0.5700680 0.011297124 0.042988207 4899      1
-## 19 0.002613053 0.04045082 0.9453130 0.004237259 0.007385951 4928      1
-## 23 0.002217089 0.02403448 0.9629787 0.003963221 0.006806481 5866      1
-## 24 0.005444750 0.24939714 0.2292069 0.026203996 0.489747226 5868      1
-## 26 0.005664767 0.07304688 0.4803542 0.027295396 0.413638741 6409      1
-## 31 0.005790996 0.39766484 0.3585390 0.206661701 0.031343468 7056      1
-## 32 0.004393117 0.10193853 0.1666347 0.561594903 0.165438712 7750      1
-## 38 0.003151925 0.04860531 0.9326518 0.005094481 0.010496452 9806      1
+##            int     person      mail       phone     online   id target
+## 7  0.003359201 0.06729294 0.8778047 0.007526707 0.04401642  519      1
+## 16 0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 1280      1
+## 22 0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 2420      1
+## 25 0.007740805 0.43735009 0.4561079 0.031226980 0.06757420 4899      1
+## 26 0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 4928      1
+## 34 0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 6409      1
+## 38 0.005955158 0.24931282 0.4316050 0.276899695 0.03622730 7056      1
+## 39 0.006295884 0.38608423 0.5118341 0.018325686 0.07746006 7278      1
+## 46 0.004131482 0.50714368 0.4569422 0.012873973 0.01890871 8559      1
+## 50 0.007615761 0.06572634 0.4316943 0.023847446 0.47111613 9389      1
 {% endhighlight %}
  
-It does fairly well with those that give over the phone.
+It does fairly well with those that give by sending a check through the mail.
  
 
 {% highlight text %}
-##            int     person      mail       phone      online  id target
-## 3  0.001821973 0.02800478 0.9609123 0.002952908 0.006308064 345      2
-## 4  0.007963935 0.17352940 0.4297309 0.023120333 0.365655482 353      2
-## 5  0.002613053 0.04045082 0.9453130 0.004237259 0.007385951 355      2
-## 6  0.001646569 0.02225475 0.9688551 0.002856219 0.004387403 378      2
-## 7  0.002613053 0.04045082 0.9453130 0.004237259 0.007385951 503      2
-## 9  0.005285592 0.07657687 0.7925199 0.010747825 0.114869766 519      2
-## 10 0.001923618 0.03054638 0.9587505 0.003438619 0.005340878 520      2
-## 11 0.002613053 0.04045082 0.9453130 0.004237259 0.007385951 679      2
-## 12 0.002613053 0.04045082 0.9453130 0.004237259 0.007385951 689      2
-## 13 0.006701720 0.13141139 0.4651566 0.017720899 0.379009485 778      2
+##            int     person      mail       phone     online  id target
+## 1  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 355      2
+## 2  0.004380052 0.39190200 0.5703541 0.006143480 0.02722035 356      2
+## 3  0.002684170 0.04337558 0.9115510 0.004304499 0.03808480 386      2
+## 4  0.006816243 0.05887737 0.7236111 0.017922351 0.19277288 491      2
+## 5  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 503      2
+## 8  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 566      2
+## 9  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 679      2
+## 10 0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 689      2
+## 11 0.003804006 0.52841663 0.4409716 0.006580134 0.02022763 753      2
+## 12 0.005705449 0.03896137 0.6722894 0.014751926 0.26829192 778      2
 {% endhighlight %}
  
 It also is decent at guessing donors who give over the phone.
  
 
 {% highlight text %}
-##             int     person       mail     phone     online    id target
-## 2   0.006447881 0.27951929 0.21420161 0.3432616 0.15656960   339      3
-## 17  0.006447881 0.27951929 0.21420161 0.3432616 0.15656960  3061      3
-## 81  0.006031199 0.55505157 0.23232101 0.1552101 0.05138609 41044      3
-## 127 0.004716711 0.16161546 0.12784827 0.5885134 0.11730611 75114      3
-## 151 0.003545512 0.05394986 0.05254861 0.8255025 0.06445345 83825      3
-## 161 0.003273208 0.06271372 0.03206094 0.8624527 0.03949941 84552      3
-## 167 0.003933806 0.03814729 0.03396326 0.8022864 0.12166924 84774      3
-## 168 0.008249116 0.15024789 0.57274908 0.1861677 0.08258623 84977      3
-## 170 0.004717048 0.04138076 0.08577289 0.7200073 0.14812200 84997      3
-## 171 0.004387685 0.06947684 0.07751994 0.7959223 0.05269326 85001      3
+##             int     person       mail      phone     online    id target
+## 96  0.006867969 0.39268070 0.45476663 0.09771536 0.04796930 41044      3
+## 165 0.008710269 0.08021285 0.17544633 0.51470315 0.22092737 83825      3
+## 176 0.008887049 0.39015675 0.18958509 0.27069449 0.14067668 84774      3
+## 179 0.008767311 0.17562665 0.19748324 0.41097203 0.20715080 84997      3
+## 188 0.005981983 0.09171446 0.11481086 0.65270221 0.13479042 85782      3
+## 190 0.004826783 0.53774071 0.05696745 0.38079470 0.01967035 86077      3
+## 194 0.006130100 0.31922567 0.20285183 0.24367577 0.22811663 86345      3
+## 198 0.005744839 0.03059022 0.07675869 0.75888449 0.12802182 86604      3
+## 203 0.009253982 0.10594522 0.22583945 0.53049254 0.12846878 86800      3
+## 204 0.005973524 0.18114929 0.09927659 0.65132791 0.06227269 86830      3
 {% endhighlight %}
  
-However, it again does not do well with online.
+However, it does not do as well predicting who gives online.
  
 
 {% highlight text %}
-##            int     person       mail       phone      online    id target
-## 8  0.004850092 0.08467796 0.73958880 0.011224560 0.159658581   513      4
-## 22 0.005589177 0.08343919 0.66263264 0.011564235 0.236774772  5850      4
-## 27 0.007457472 0.26031843 0.30433097 0.172368959 0.255524188  6636      4
-## 30 0.001923618 0.03054638 0.95875055 0.003438619 0.005340878  6925      4
-## 56 0.004713824 0.08342808 0.79466563 0.009873253 0.107319258 22339      4
-## 66 0.004661369 0.14799589 0.09183192 0.687670052 0.067840777 27512      4
-## 74 0.005664767 0.07304688 0.48035419 0.027295396 0.413638741 34686      4
-## 75 0.005664767 0.07304688 0.48035419 0.027295396 0.413638741 35702      4
-## 78 0.005664767 0.07304688 0.48035419 0.027295396 0.413638741 36357      4
-## 89 0.005531315 0.26654366 0.56780285 0.025520090 0.134602100 50783      4
+##             int     person      mail       phone     online    id target
+## 6   0.003425406 0.03227650 0.8122783 0.007251971 0.14476775   513      4
+## 35  0.004963682 0.14474791 0.2614189 0.071880348 0.51698917  6636      4
+## 43  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670  8043      4
+## 54  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 10046      4
+## 58  0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 12325      4
+## 67  0.004086843 0.09862112 0.8144931 0.011132821 0.07166620 22339      4
+## 89  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 34686      4
+## 91  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 35702      4
+## 93  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 36357      4
+## 111 0.006371358 0.29865688 0.3690878 0.018995168 0.30688882 58827      4
 {% endhighlight %}
  
 With all of that out of the way, to start the conversation and add a few ideas on what factors contribute to which method of giving, here are a few graphs.
@@ -1040,21 +296,11 @@ With all of that out of the way, to start the conversation and add a few ideas o
 First here is the break down of the number of donors in each category.  It's not even but it is not overly donimated by any one categoy either which is good.
  
  
-
-{% highlight text %}
-## Error in fread("giving_vehicle.csv"): File 'giving_vehicle.csv' does not exist. Include one or more spaces to consider the input a system command.
-{% endhighlight %}
-
 ![plot of chunk unnamed-chunk-9](/figures/unnamed-chunk-9-1.png)
  
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.
 I also feel that every age bracket has a method so this seems useful.
  
-
-{% highlight text %}
-## Warning: Removed 2202 rows containing non-finite values (stat_density).
-{% endhighlight %}
-
 ![plot of chunk unnamed-chunk-10](/figures/unnamed-chunk-10-1.png)
  
 First looking at that variable on whether a constiuent is married, not married and male or not married and female.  It's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.
