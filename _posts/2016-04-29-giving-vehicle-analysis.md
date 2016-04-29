@@ -48,6 +48,7 @@ I eventually choose:
  
 My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it is in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder along with the data set that I used.
  
+This next part is just the report out from the model.  I cannot seem to hide it so just scroll through this to get to the plots.
  
 
 {% highlight text %}
@@ -313,6 +314,7 @@ Next we can look at age which I think is the most revealing.  I was very surpris
 I also feel that every age bracket has a method so this seems useful.
  
 To make each category clear:
+ 
 * Lockbox is check in the mail
 * Online Giving is online giving
 * Staff is giving in person to a staff member
@@ -354,6 +356,7 @@ Email also shows this trend where the more we ask via email for a gift, the more
 The next plot looks at the constituent type which is a little busy and for me there are not many insights to glean.
  
 I will provide a legend for a few of the types:
+ 
 * C is company
 * F is foundation
 * rs is retired staff
