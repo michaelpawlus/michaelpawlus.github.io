@@ -1,0 +1,241 @@
+---
+layout: post
+title: Giving Vehicle Analysis
+author: Michael Pawlus
+published: false
+status: process
+draft: false
+---
+
+There was an interesting question on PRSPCT-L a few weeks ago:
+
+> Do you know of or have experience with demographic modeling and data appends that help > predict a donor’s preferred giving method (i.e., event, direct mail, online, etc.)? 
+
+I thought I would take a minute to look into this.  I actually couldn't initially think of which variables to include aside from age.  My starting point was looking at those that made gift by check through the mail, online, over the phone or in person during this fiscal year.  I was evaluating the data at the household level so gifts from married households only count once.
+
+I decided to not use prior giving at all though I think that is likely the best predictor.  That is, those that gave online last year will likely do so again this year.  I also think other giving stats like length of giving, average amount and total amount would also be helpful in making predictions.
+
+However, my interpretation of the original question was that this should just be an analysis of demographic data and so that is the path that I took.
+
+I eventually choose:
+
+* age
+* constituent type: company, individual, etc. 
+* spouse constituent type: for those married (with an 'N' for those not married)
+* a variable called type2 which is maybe not the greatest variable ever
+    + type2 = 1 means married
+    + type2 = 2 means not married and constituent is male
+    + type2 = 3 means not married and constituent is female
+    + type2 = 4 means company
+    + type2 = 5 means foundation
+    + type2 = 6 means missing inforation or other
+* phone: do they have a phone number in our system or not
+* email: do they have an email in our system or not
+* mail: do they have a good mailing address in our system or not
+* assigned: is this constituent assigned to a gift officer
+* I added a 1 or 0 if they had any of the following no contact flags:
+    + no contact at all
+    + no contact by phone
+    + no contact by email
+    + no contact by mail
+    + no personal contact
+    + no solicitations
+* I also added a code for geographic distance from the university:
+    + 1 = in our tri-county area
+    + 2 = in our state
+    + 3 = everyone else
+* Lastly, I added a count of the number of solicitations they received by type
+
+My approach to problems like this is to get a decent sized set of data points like this together based on intuition basically and then create a really quick model.  I will skip the modelling code here for now but it will be in my fundraising analytics folder.
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+library(data.table)
+library(xgboost)
+library(Matrix)
+library(MLmetrics)
+library(ggplot2)
+
+setwd("C:/Users/pawlusm/Desktop")
+
+## read in data set
+gv <- fread("giving_vehicle.csv") 
+
+
+## characters to integers
+for (f in names(gv)) {
+  if (class(gv[[f]])=="character") {
+    levels <- unique(gv[[f]])
+    gv[[f]] <- as.integer(factor(gv[[f]], levels=levels))
+  }
+}
+
+## extract feature names (all columns except id and target)
+feature.names <- names(gv)[c(3:ncol(gv))]
+
+## sample some rows to split train and test
+split <-sample(nrow(gv),nrow(gv)*0.5)
+
+## make train and test
+train <- gv[split,]
+test <- gv[-split,]
+
+#### one more split for a holdout set for xgboost
+#h <-sample(nrow(train),nrow(train)*0.2)
+#tra<-train[,feature.names, with=FALSE]  ## ( not needed? )
+
+## extract target
+target <- train[,method]
+
+## create matrix
+mtrain <- sparse.model.matrix(method ~ ., data = train[,names(train)[c(2:ncol(train))], with=FALSE])
+
+## one more split for a holdout set for xgboost
+nrow(mtrain)
+h<-sample(nrow(mtrain),nrow(mtrain)*0.2) 
+
+## create dense matrices for xgboost
+dtrain <- xgb.DMatrix(data=mtrain[h,], label=target[h])
+dval <- xgb.DMatrix(data=mtrain[-h,], label=target[-h])
+watchlist <- list(val=dval,train=dtrain)
+
+param <- list(  objective           = "multi:softprob",
+                num_class           = 5,
+                booster             = "gbtree",
+                eta                 = 0.05,  # high value like 0.2 best result so far
+                #max_depth           = 2,  # default of 6 is best so far
+                subsample           = 0.7, # 0.9 working best
+                colsample_bytree    = 0.7,
+                #gamma               = 0.1,
+                #alpha               = 0.001,
+                #min_child_weight    = 2,
+                #max_delta_step      = 0.5, # 1 is best so far
+                eval_metric         = "mlogloss"
+)
+
+clf <- xgb.train(   params              = param, 
+                    data                = dtrain, 
+                    nrounds             = 10000, 
+                    verbose             = 2,
+                    early.stop.round    = 50,
+                    watchlist           = watchlist,
+                    maximize            = FALSE
+)
+
+# Get the feature real names
+names <- dimnames(mtrain)[[2]]
+
+# Compute feature importance matrix
+importance_matrix <- xgb.importance(names, model = clf)
+```
+
+Once the model is done, I like to look at the importance of the features included:
+
+```{r}
+xgb.plot.importance(importance_matrix[1:10,])
+```
+
+We can see that age does matter as we might expect and also the number of solicitations that we send.
+
+```{r}
+mtest <- sparse.model.matrix(method ~ ., data = test[,names(test)[c(2:ncol(test))], with=FALSE])
+
+preds <- predict(clf, mtest)
+preds = matrix(preds,5,length(preds)/5)
+preds = t(preds)
+
+pred <- as.data.frame(preds)
+pred$id <- test$core_id
+pred$target <- test$method
+
+names(pred) <- c("int","person","mail","phone","online","id","target")
+```
+
+I should note that at present this model is not performing too well but it is just a quick one for now.  Here is the logloss score which is a measure of error.  The closer to 0 the better.
+
+```{r echo = FALSE}
+MultiLogLoss(pred$target, pred[,2:5])
+```
+
+We are a long way off.
+
+Here is a quick break down for each group.
+
+The model struggles to identify those that give in person.
+
+```{r echo=FALSE}
+head(pred[pred$target==1,], n=10)
+```
+
+It does fairly well with those that give over the phone.
+
+```{r echo=FALSE}
+head(pred[pred$target==2,], n=10)
+```
+
+It also is decent at guessing donors who give over the phone.
+
+```{r echo=FALSE}
+head(pred[pred$target==3,], n=10)
+```
+
+However, it again does not do well with online.
+
+```{r echo=FALSE}
+head(pred[pred$target==4,], n=10)
+```
+
+With all of that out of the way, to start the conversation and add a few ideas on what factors contribute to which method of giving, here are a few graphs.
+
+First here is the break down of the number of donors in each category.  It's not even but it is not overly donimated by any one categoy either which is good.
+
+
+```{r echo=FALSE}
+gv <- fread("giving_vehicle.csv") 
+
+ggplot(data=gv,aes(x=method)) + geom_bar() + geom_text(stat='count',aes(label=..count..),vjust=-0.5)
+```
+
+Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.
+I also feel that every age bracket has a method so this seems useful.
+
+```{r echo=FALSE}
+ggplot(gv, aes(age, fill = as.factor(method), colour = as.factor(method))) +
+  geom_density(alpha = 0.1) +
+  xlim(20, 90)
+```
+
+First looking at that variable on whether a constiuent is married, not married and male or not married and female.  It's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(type2), fill=factor(method)) ) +
+  geom_bar(position="fill")
+```
+
+The chart on ask count was also quite insightful.  It appears that people give based on how you ask them.  If you call someone numerous times they will give that way and if you email numerous times then online will be their choice and so on.  This actually reminds me of a small nonprofit in Detroit.  I don't remember the name but they won an award at a Blackbaud conference and their trick for increasing gifts was to just ask more often which flies in the face of some of the conventional thought that seems to suggest that this type of behavior would be detrimental.  In any case, this is obviously just the trends in our data and it doesn't mean it would work everywhere but it seems like a possible factor to consider.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(p_sols), fill=factor(method)) ) +
+  geom_bar(position="fill")
+
+ggplot(gv, aes(factor(m_sols), fill=factor(method)) ) +
+  geom_bar(position="fill")
+
+ggplot(gv, aes(factor(e_sols), fill=factor(method)) ) +
+  geom_bar(position="fill")
+```
+
+Next, looking at the constiuent type which is a little busy and for me there are not many insights to glean.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(type1), fill=factor(method)) ) +
+  geom_bar(position="fill")
+```
+  
+Lastly, geographic distance also does not add too much more information.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(geo_dist), fill=factor(method)) ) +
+  geom_bar(position="fill")
+```
+
