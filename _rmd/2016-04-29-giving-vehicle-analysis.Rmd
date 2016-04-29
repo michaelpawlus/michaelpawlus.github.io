@@ -46,7 +46,7 @@ I eventually choose:
     + 3 = everyone else
 * Lastly, I added a count of the number of solicitations they received by type
 
-My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it will be in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder.
+My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it is in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder along with the data set that I used.
 
 
 ```{r warning=FALSE, message=FALSE, echo=FALSE}
@@ -56,6 +56,8 @@ library(Matrix)
 library(MLmetrics)
 library(ggplot2)
 library(RCurl)
+
+set.seed(616)
 
 ## read in data set
 x <- getURL("https://raw.githubusercontent.com/michaelpawlus/fundraising_analytics/master/giving_method_analysis/giving_vehicle.csv")
@@ -106,6 +108,7 @@ param <- list(  objective           = "multi:softprob",
                 #max_depth           = 2,  # default of 6 is best so far
                 subsample           = 0.7, # 0.9 working best
                 colsample_bytree    = 0.7,
+                silent              = 1,
                 #gamma               = 0.1,
                 #alpha               = 0.001,
                 #min_child_weight    = 2,
@@ -159,7 +162,7 @@ MultiLogLoss(pred$target, pred[,2:5])
 
 We are a long way off.
 
-Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
+Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labeled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
 
 We can see that the model struggles to identify those that give in person.
 
@@ -187,7 +190,7 @@ head(pred[pred$target==4,], n=10)
 
 With all of that out of the way, to start the conversation and add a few ideas on what factors contribute to which method of giving, here are a few graphs.
 
-First here is the break down of the number of donors in each category.  It's not even but it is not overly donimated by any one categoy either which is good.
+First here is the break down of the number of donors in each category.  It's not even but it is not overly dominated by any one category either which is good.
 
 
 ```{r echo=FALSE}
@@ -200,43 +203,91 @@ ggplot(data=gv,aes(x=method)) + geom_bar() + geom_text(stat='count',aes(label=..
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.
 I also feel that every age bracket has a method so this seems useful.
 
+To make each category clear:
+* Lockbox is check in the mail
+* Online Giving is online giving
+* Staff is giving in person to a staff member
+* TOP Gift is giving over the phone through our Telephone Outreach Program
+
 ```{r warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(gv, aes(age, fill = as.factor(method), colour = as.factor(method))) +
   geom_density(alpha = 0.1) +
   xlim(20, 90)
 ```
 
-First looking at that variable on whether a constiuent is married, not married and male or not married and female.  It's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.
+Looking at that variable on whether a constituent is married, not married and male or not married and female, it's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.  The fact that married couples give more through the mail I believe is using the age data since older people are more likely to be married and we already saw that older people prefer to give in this way.
+
+Again, these codes are:
+
+* 1 means married
+* 2 means not married and constituent is male
+* 3 means not married and constituent is female
+* 4 means company
+* 5 means foundation
+* 6 means missing information or other
 
 ```{r echo=FALSE}
 ggplot(gv, aes(factor(type2), fill=factor(method)) ) +
-  geom_bar(position="fill")
+  geom_bar(position="fill") +
+  ylab("density")
 ```
 
-The chart on ask count was also quite insightful.  It appears that people give based on how you ask them.  If you call someone numerous times they will give that way and if you email numerous times then online will be their choice and so on.  This actually reminds me of a small nonprofit in Detroit.  I don't remember the name but they won an award at a Blackbaud conference and their trick for increasing gifts was to just ask more often which flies in the face of some of the conventional thought that seems to suggest that this type of behavior would be detrimental.  In any case, this is obviously just the trends in our data and it doesn't mean it would work everywhere but it seems like a possible factor to consider.
+A quick note on these plots.  The y-axis is density so it is basically answering the question: of those that fall into a particular category what is the distribution in giving method choice; what is the percentage that choose to give via a particular method by category type.
+
+The chart on ask count was also quite insightful.  It appears that people give based on how you ask them.  If you call someone numerous times they will give that way and if you email numerous times then online will be their choice and so on.  
+
+This actually reminds me of a small nonprofit in Detroit.  I don't remember the name but they won an award at a Blackbaud conference in 2012 and their trick for increasing gifts was to just ask more often which I think may fly in the face of some of the conventional thought that seems to suggest that this type of behavior would be detrimental.  In any case, this is obviously just the trends in our data and it doesn't mean it would work everywhere but it seems like a possible factor to consider.
+
+Those with two calls gave over the phone more often than those that just received one.
 
 ```{r echo=FALSE}
 ggplot(gv, aes(factor(p_sols), fill=factor(method)) ) +
-  geom_bar(position="fill")
-
-ggplot(gv, aes(factor(m_sols), fill=factor(method)) ) +
-  geom_bar(position="fill")
-
-ggplot(gv, aes(factor(e_sols), fill=factor(method)) ) +
-  geom_bar(position="fill")
+  geom_bar(position="fill") +
+  ylab("density")
 ```
 
-Next, looking at the constiuent type which is a little busy and for me there are not many insights to glean.
+Mail is interesting as it almost seems to be a reminder to give online at first but after four mailings we finally wear down the holdouts and they relent and send us money perhaps just to stop the mailings.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(m_sols), fill=factor(method)) ) +
+  geom_bar(position="fill") +
+  ylab("density")
+```
+
+Email also shows this trend where the more we ask via email for a gift, the more we see constituents choosing to give online.
+
+```{r echo=FALSE}
+ggplot(gv, aes(factor(e_sols), fill=factor(method)) ) +
+  geom_bar(position="fill") +
+  ylab("density")
+```
+
+The next plot looks at the constituent type which is a little busy and for me there are not many insights to glean.
+
+I will provide a legend for a few of the types:
+* C is company
+* F is foundation
+* rs is retired staff
+* S is staff
+* I is any individual who is not staff
+
+Most companies give directly to a staff member which makes sense.  Retired staff send in checks which again references the trends seen in the age data earlier.  Current staff give online since that is probably the easiest way for them to give.  
 
 ```{r echo=FALSE}
 ggplot(gv, aes(factor(type1), fill=factor(method)) ) +
-  geom_bar(position="fill")
+  geom_bar(position="fill") + 
+  ylab("density")
 ```
   
-Lastly, geographic distance also does not add too much more information.
+The last plot is on geographic distance which does not offer very much additional insight.
 
 ```{r echo=FALSE}
 ggplot(gv, aes(factor(geo_dist), fill=factor(method)) ) +
-  geom_bar(position="fill")
+  geom_bar(position="fill") +
+  ylab("density")
 ```
 
+This is just a post and some code to get the conversation started.  It will be interesting to see if anyone has anything additional to add.  For me these are the takeaways at this stage in researching this question:
+
+* Age seems to matter and I think experimenting with targeting the way we ask by age may be beneficial
+* Ask frequency seems to help.  These days it is so easy to ignore anything that we do not want to deal with immediately that these types of reminders may actually be helpful and keep your organization top of mind as well as increase your chance of connecting with someone when they have the time to give right at the moment.

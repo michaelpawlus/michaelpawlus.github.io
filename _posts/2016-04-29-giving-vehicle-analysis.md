@@ -46,162 +46,173 @@ I eventually choose:
     + 3 = everyone else
 * Lastly, I added a count of the number of solicitations they received by type
  
-My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it will be in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder.
+My approach to problems like this is to get a decent sized set of data points together based on intuition like the ones described and then create a really quick model.  I will skip the modelling code here for now but it is in my [fundraising analytics](https://github.com/michaelpawlus/fundraising_analytics) folder along with the data set that I used.
  
  
 
 {% highlight text %}
-## [0]	val-mlogloss:1.582715	train-mlogloss:1.573866
-## [1]	val-mlogloss:1.553963	train-mlogloss:1.538293
-## [2]	val-mlogloss:1.531163	train-mlogloss:1.507515
-## [3]	val-mlogloss:1.508348	train-mlogloss:1.478492
-## [4]	val-mlogloss:1.488688	train-mlogloss:1.452502
-## [5]	val-mlogloss:1.469154	train-mlogloss:1.424387
-## [6]	val-mlogloss:1.444639	train-mlogloss:1.393060
-## [7]	val-mlogloss:1.425079	train-mlogloss:1.363681
-## [8]	val-mlogloss:1.401279	train-mlogloss:1.333201
-## [9]	val-mlogloss:1.380213	train-mlogloss:1.304643
-## [10]	val-mlogloss:1.358288	train-mlogloss:1.275912
-## [11]	val-mlogloss:1.338099	train-mlogloss:1.250834
-## [12]	val-mlogloss:1.319267	train-mlogloss:1.227067
-## [13]	val-mlogloss:1.307815	train-mlogloss:1.208305
-## [14]	val-mlogloss:1.294118	train-mlogloss:1.188139
-## [15]	val-mlogloss:1.281574	train-mlogloss:1.171527
-## [16]	val-mlogloss:1.265494	train-mlogloss:1.150507
-## [17]	val-mlogloss:1.251441	train-mlogloss:1.131359
-## [18]	val-mlogloss:1.237740	train-mlogloss:1.112782
-## [19]	val-mlogloss:1.225983	train-mlogloss:1.096067
-## [20]	val-mlogloss:1.216479	train-mlogloss:1.078800
-## [21]	val-mlogloss:1.203582	train-mlogloss:1.059727
-## [22]	val-mlogloss:1.192012	train-mlogloss:1.042441
-## [23]	val-mlogloss:1.182644	train-mlogloss:1.027063
-## [24]	val-mlogloss:1.173443	train-mlogloss:1.011006
-## [25]	val-mlogloss:1.165647	train-mlogloss:0.998287
-## [26]	val-mlogloss:1.159199	train-mlogloss:0.986045
-## [27]	val-mlogloss:1.152454	train-mlogloss:0.972666
-## [28]	val-mlogloss:1.146981	train-mlogloss:0.961647
-## [29]	val-mlogloss:1.141437	train-mlogloss:0.951718
-## [30]	val-mlogloss:1.135511	train-mlogloss:0.938669
-## [31]	val-mlogloss:1.130664	train-mlogloss:0.927784
-## [32]	val-mlogloss:1.122512	train-mlogloss:0.916208
-## [33]	val-mlogloss:1.115641	train-mlogloss:0.904204
-## [34]	val-mlogloss:1.108702	train-mlogloss:0.893425
-## [35]	val-mlogloss:1.102542	train-mlogloss:0.883271
-## [36]	val-mlogloss:1.096559	train-mlogloss:0.872655
-## [37]	val-mlogloss:1.091135	train-mlogloss:0.862228
-## [38]	val-mlogloss:1.086243	train-mlogloss:0.852190
-## [39]	val-mlogloss:1.080592	train-mlogloss:0.842428
-## [40]	val-mlogloss:1.076474	train-mlogloss:0.833512
-## [41]	val-mlogloss:1.072122	train-mlogloss:0.825842
-## [42]	val-mlogloss:1.066944	train-mlogloss:0.815583
-## [43]	val-mlogloss:1.063194	train-mlogloss:0.806556
-## [44]	val-mlogloss:1.060498	train-mlogloss:0.798484
-## [45]	val-mlogloss:1.056354	train-mlogloss:0.789853
-## [46]	val-mlogloss:1.052711	train-mlogloss:0.782954
-## [47]	val-mlogloss:1.049281	train-mlogloss:0.775809
-## [48]	val-mlogloss:1.047596	train-mlogloss:0.769226
-## [49]	val-mlogloss:1.045115	train-mlogloss:0.763462
-## [50]	val-mlogloss:1.041053	train-mlogloss:0.756046
-## [51]	val-mlogloss:1.038616	train-mlogloss:0.749806
-## [52]	val-mlogloss:1.036706	train-mlogloss:0.744565
-## [53]	val-mlogloss:1.033949	train-mlogloss:0.737677
-## [54]	val-mlogloss:1.031315	train-mlogloss:0.731192
-## [55]	val-mlogloss:1.028992	train-mlogloss:0.725536
-## [56]	val-mlogloss:1.027947	train-mlogloss:0.719509
-## [57]	val-mlogloss:1.025696	train-mlogloss:0.713127
-## [58]	val-mlogloss:1.024304	train-mlogloss:0.707649
-## [59]	val-mlogloss:1.022731	train-mlogloss:0.702363
-## [60]	val-mlogloss:1.021422	train-mlogloss:0.698019
-## [61]	val-mlogloss:1.020482	train-mlogloss:0.694032
-## [62]	val-mlogloss:1.018532	train-mlogloss:0.688700
-## [63]	val-mlogloss:1.017330	train-mlogloss:0.683582
-## [64]	val-mlogloss:1.015654	train-mlogloss:0.677959
-## [65]	val-mlogloss:1.014942	train-mlogloss:0.673141
-## [66]	val-mlogloss:1.013514	train-mlogloss:0.668230
-## [67]	val-mlogloss:1.012823	train-mlogloss:0.662584
-## [68]	val-mlogloss:1.012013	train-mlogloss:0.658104
-## [69]	val-mlogloss:1.010821	train-mlogloss:0.653811
-## [70]	val-mlogloss:1.009808	train-mlogloss:0.649237
-## [71]	val-mlogloss:1.008552	train-mlogloss:0.644443
-## [72]	val-mlogloss:1.008116	train-mlogloss:0.640887
-## [73]	val-mlogloss:1.007359	train-mlogloss:0.635871
-## [74]	val-mlogloss:1.006767	train-mlogloss:0.631848
-## [75]	val-mlogloss:1.007058	train-mlogloss:0.627530
-## [76]	val-mlogloss:1.006605	train-mlogloss:0.623328
-## [77]	val-mlogloss:1.005875	train-mlogloss:0.619960
-## [78]	val-mlogloss:1.005172	train-mlogloss:0.616315
-## [79]	val-mlogloss:1.004530	train-mlogloss:0.611856
-## [80]	val-mlogloss:1.004082	train-mlogloss:0.607820
-## [81]	val-mlogloss:1.003519	train-mlogloss:0.603727
-## [82]	val-mlogloss:1.003457	train-mlogloss:0.599815
-## [83]	val-mlogloss:1.002861	train-mlogloss:0.596066
-## [84]	val-mlogloss:1.002094	train-mlogloss:0.592555
-## [85]	val-mlogloss:1.002167	train-mlogloss:0.588560
-## [86]	val-mlogloss:1.001933	train-mlogloss:0.585276
-## [87]	val-mlogloss:1.001820	train-mlogloss:0.581598
-## [88]	val-mlogloss:1.002201	train-mlogloss:0.578506
-## [89]	val-mlogloss:1.001997	train-mlogloss:0.575658
-## [90]	val-mlogloss:1.001907	train-mlogloss:0.572952
-## [91]	val-mlogloss:1.001312	train-mlogloss:0.569287
-## [92]	val-mlogloss:1.000474	train-mlogloss:0.565991
-## [93]	val-mlogloss:1.000041	train-mlogloss:0.562894
-## [94]	val-mlogloss:1.000085	train-mlogloss:0.560082
-## [95]	val-mlogloss:0.999583	train-mlogloss:0.557834
-## [96]	val-mlogloss:0.999759	train-mlogloss:0.554371
-## [97]	val-mlogloss:0.999530	train-mlogloss:0.551711
-## [98]	val-mlogloss:0.999499	train-mlogloss:0.548754
-## [99]	val-mlogloss:0.999463	train-mlogloss:0.545782
-## [100]	val-mlogloss:0.999917	train-mlogloss:0.543003
-## [101]	val-mlogloss:0.999920	train-mlogloss:0.541009
-## [102]	val-mlogloss:1.000815	train-mlogloss:0.538137
-## [103]	val-mlogloss:1.001245	train-mlogloss:0.535543
-## [104]	val-mlogloss:1.001011	train-mlogloss:0.533015
-## [105]	val-mlogloss:1.001262	train-mlogloss:0.530525
-## [106]	val-mlogloss:1.001334	train-mlogloss:0.527835
-## [107]	val-mlogloss:1.002141	train-mlogloss:0.524959
-## [108]	val-mlogloss:1.002593	train-mlogloss:0.522457
-## [109]	val-mlogloss:1.003325	train-mlogloss:0.520581
-## [110]	val-mlogloss:1.003778	train-mlogloss:0.518056
-## [111]	val-mlogloss:1.004476	train-mlogloss:0.515699
-## [112]	val-mlogloss:1.005165	train-mlogloss:0.513398
-## [113]	val-mlogloss:1.005466	train-mlogloss:0.511497
-## [114]	val-mlogloss:1.006080	train-mlogloss:0.509410
-## [115]	val-mlogloss:1.006884	train-mlogloss:0.506851
-## [116]	val-mlogloss:1.007395	train-mlogloss:0.504609
-## [117]	val-mlogloss:1.008347	train-mlogloss:0.502299
-## [118]	val-mlogloss:1.008790	train-mlogloss:0.500757
-## [119]	val-mlogloss:1.009479	train-mlogloss:0.498467
-## [120]	val-mlogloss:1.009869	train-mlogloss:0.496313
-## [121]	val-mlogloss:1.010233	train-mlogloss:0.494218
-## [122]	val-mlogloss:1.010248	train-mlogloss:0.491609
-## [123]	val-mlogloss:1.011111	train-mlogloss:0.490133
-## [124]	val-mlogloss:1.011427	train-mlogloss:0.488062
-## [125]	val-mlogloss:1.012138	train-mlogloss:0.486207
-## [126]	val-mlogloss:1.012402	train-mlogloss:0.484039
-## [127]	val-mlogloss:1.012948	train-mlogloss:0.482031
-## [128]	val-mlogloss:1.013844	train-mlogloss:0.479843
-## [129]	val-mlogloss:1.014783	train-mlogloss:0.478119
-## [130]	val-mlogloss:1.016260	train-mlogloss:0.476388
-## [131]	val-mlogloss:1.015909	train-mlogloss:0.474518
-## [132]	val-mlogloss:1.016196	train-mlogloss:0.472979
-## [133]	val-mlogloss:1.017033	train-mlogloss:0.471587
-## [134]	val-mlogloss:1.017782	train-mlogloss:0.469493
-## [135]	val-mlogloss:1.018922	train-mlogloss:0.467110
-## [136]	val-mlogloss:1.019096	train-mlogloss:0.465051
-## [137]	val-mlogloss:1.019786	train-mlogloss:0.463397
-## [138]	val-mlogloss:1.020255	train-mlogloss:0.461616
-## [139]	val-mlogloss:1.020720	train-mlogloss:0.459674
-## [140]	val-mlogloss:1.021757	train-mlogloss:0.457790
-## [141]	val-mlogloss:1.022003	train-mlogloss:0.455669
-## [142]	val-mlogloss:1.022917	train-mlogloss:0.453019
-## [143]	val-mlogloss:1.024103	train-mlogloss:0.450660
-## [144]	val-mlogloss:1.024705	train-mlogloss:0.448940
-## [145]	val-mlogloss:1.025474	train-mlogloss:0.447166
-## [146]	val-mlogloss:1.025886	train-mlogloss:0.445536
-## [147]	val-mlogloss:1.026363	train-mlogloss:0.443784
-## [148]	val-mlogloss:1.027045	train-mlogloss:0.442210
-## [149]	val-mlogloss:1.027593	train-mlogloss:0.440786
-## Stopping. Best iteration: 100
+## [0]	val-mlogloss:1.573021	train-mlogloss:1.566801
+## [1]	val-mlogloss:1.542564	train-mlogloss:1.529456
+## [2]	val-mlogloss:1.518447	train-mlogloss:1.496815
+## [3]	val-mlogloss:1.488326	train-mlogloss:1.461229
+## [4]	val-mlogloss:1.462185	train-mlogloss:1.429590
+## [5]	val-mlogloss:1.442493	train-mlogloss:1.403462
+## [6]	val-mlogloss:1.418824	train-mlogloss:1.374059
+## [7]	val-mlogloss:1.396360	train-mlogloss:1.346390
+## [8]	val-mlogloss:1.376456	train-mlogloss:1.319052
+## [9]	val-mlogloss:1.354986	train-mlogloss:1.293203
+## [10]	val-mlogloss:1.337133	train-mlogloss:1.267126
+## [11]	val-mlogloss:1.319295	train-mlogloss:1.243102
+## [12]	val-mlogloss:1.306464	train-mlogloss:1.221627
+## [13]	val-mlogloss:1.293017	train-mlogloss:1.201316
+## [14]	val-mlogloss:1.276974	train-mlogloss:1.178625
+## [15]	val-mlogloss:1.265909	train-mlogloss:1.160488
+## [16]	val-mlogloss:1.254487	train-mlogloss:1.143027
+## [17]	val-mlogloss:1.242049	train-mlogloss:1.124598
+## [18]	val-mlogloss:1.229030	train-mlogloss:1.105606
+## [19]	val-mlogloss:1.219191	train-mlogloss:1.089167
+## [20]	val-mlogloss:1.207613	train-mlogloss:1.073157
+## [21]	val-mlogloss:1.199207	train-mlogloss:1.059713
+## [22]	val-mlogloss:1.191642	train-mlogloss:1.047457
+## [23]	val-mlogloss:1.181021	train-mlogloss:1.032885
+## [24]	val-mlogloss:1.171896	train-mlogloss:1.017604
+## [25]	val-mlogloss:1.165301	train-mlogloss:1.005522
+## [26]	val-mlogloss:1.158227	train-mlogloss:0.992049
+## [27]	val-mlogloss:1.149824	train-mlogloss:0.978554
+## [28]	val-mlogloss:1.143039	train-mlogloss:0.968725
+## [29]	val-mlogloss:1.138274	train-mlogloss:0.958425
+## [30]	val-mlogloss:1.130911	train-mlogloss:0.946467
+## [31]	val-mlogloss:1.125098	train-mlogloss:0.935771
+## [32]	val-mlogloss:1.119237	train-mlogloss:0.924547
+## [33]	val-mlogloss:1.113337	train-mlogloss:0.914362
+## [34]	val-mlogloss:1.108516	train-mlogloss:0.904058
+## [35]	val-mlogloss:1.102971	train-mlogloss:0.894525
+## [36]	val-mlogloss:1.097851	train-mlogloss:0.885303
+## [37]	val-mlogloss:1.094775	train-mlogloss:0.878390
+## [38]	val-mlogloss:1.089699	train-mlogloss:0.868678
+## [39]	val-mlogloss:1.085921	train-mlogloss:0.861370
+## [40]	val-mlogloss:1.082001	train-mlogloss:0.853485
+## [41]	val-mlogloss:1.079273	train-mlogloss:0.845864
+## [42]	val-mlogloss:1.075192	train-mlogloss:0.838520
+## [43]	val-mlogloss:1.072200	train-mlogloss:0.831788
+## [44]	val-mlogloss:1.070244	train-mlogloss:0.824490
+## [45]	val-mlogloss:1.066154	train-mlogloss:0.816739
+## [46]	val-mlogloss:1.063598	train-mlogloss:0.809148
+## [47]	val-mlogloss:1.060212	train-mlogloss:0.800574
+## [48]	val-mlogloss:1.057579	train-mlogloss:0.793868
+## [49]	val-mlogloss:1.054171	train-mlogloss:0.787677
+## [50]	val-mlogloss:1.052791	train-mlogloss:0.781321
+## [51]	val-mlogloss:1.050228	train-mlogloss:0.774556
+## [52]	val-mlogloss:1.048807	train-mlogloss:0.768752
+## [53]	val-mlogloss:1.046279	train-mlogloss:0.762640
+## [54]	val-mlogloss:1.044428	train-mlogloss:0.757771
+## [55]	val-mlogloss:1.041930	train-mlogloss:0.752710
+## [56]	val-mlogloss:1.039998	train-mlogloss:0.748384
+## [57]	val-mlogloss:1.038791	train-mlogloss:0.742690
+## [58]	val-mlogloss:1.038264	train-mlogloss:0.738483
+## [59]	val-mlogloss:1.036402	train-mlogloss:0.732569
+## [60]	val-mlogloss:1.034444	train-mlogloss:0.727580
+## [61]	val-mlogloss:1.032156	train-mlogloss:0.722772
+## [62]	val-mlogloss:1.030492	train-mlogloss:0.718089
+## [63]	val-mlogloss:1.029601	train-mlogloss:0.713212
+## [64]	val-mlogloss:1.028225	train-mlogloss:0.708559
+## [65]	val-mlogloss:1.026907	train-mlogloss:0.703856
+## [66]	val-mlogloss:1.025500	train-mlogloss:0.699402
+## [67]	val-mlogloss:1.024090	train-mlogloss:0.695040
+## [68]	val-mlogloss:1.023212	train-mlogloss:0.690821
+## [69]	val-mlogloss:1.022427	train-mlogloss:0.687205
+## [70]	val-mlogloss:1.021268	train-mlogloss:0.683740
+## [71]	val-mlogloss:1.020453	train-mlogloss:0.679436
+## [72]	val-mlogloss:1.020049	train-mlogloss:0.675814
+## [73]	val-mlogloss:1.019447	train-mlogloss:0.672031
+## [74]	val-mlogloss:1.019127	train-mlogloss:0.668735
+## [75]	val-mlogloss:1.019105	train-mlogloss:0.664999
+## [76]	val-mlogloss:1.018330	train-mlogloss:0.661002
+## [77]	val-mlogloss:1.017969	train-mlogloss:0.657266
+## [78]	val-mlogloss:1.016831	train-mlogloss:0.654118
+## [79]	val-mlogloss:1.017005	train-mlogloss:0.650460
+## [80]	val-mlogloss:1.015969	train-mlogloss:0.646964
+## [81]	val-mlogloss:1.016083	train-mlogloss:0.643579
+## [82]	val-mlogloss:1.016130	train-mlogloss:0.640616
+## [83]	val-mlogloss:1.014962	train-mlogloss:0.637862
+## [84]	val-mlogloss:1.014912	train-mlogloss:0.635358
+## [85]	val-mlogloss:1.015668	train-mlogloss:0.632128
+## [86]	val-mlogloss:1.015334	train-mlogloss:0.628814
+## [87]	val-mlogloss:1.014151	train-mlogloss:0.625450
+## [88]	val-mlogloss:1.014392	train-mlogloss:0.622806
+## [89]	val-mlogloss:1.014351	train-mlogloss:0.619587
+## [90]	val-mlogloss:1.014730	train-mlogloss:0.617160
+## [91]	val-mlogloss:1.014991	train-mlogloss:0.614247
+## [92]	val-mlogloss:1.015112	train-mlogloss:0.611346
+## [93]	val-mlogloss:1.014643	train-mlogloss:0.608458
+## [94]	val-mlogloss:1.015371	train-mlogloss:0.606079
+## [95]	val-mlogloss:1.015929	train-mlogloss:0.602996
+## [96]	val-mlogloss:1.015972	train-mlogloss:0.600237
+## [97]	val-mlogloss:1.015238	train-mlogloss:0.597016
+## [98]	val-mlogloss:1.015074	train-mlogloss:0.594226
+## [99]	val-mlogloss:1.014812	train-mlogloss:0.590992
+## [100]	val-mlogloss:1.014548	train-mlogloss:0.588286
+## [101]	val-mlogloss:1.014648	train-mlogloss:0.585326
+## [102]	val-mlogloss:1.014786	train-mlogloss:0.582756
+## [103]	val-mlogloss:1.014340	train-mlogloss:0.580652
+## [104]	val-mlogloss:1.014005	train-mlogloss:0.578498
+## [105]	val-mlogloss:1.013833	train-mlogloss:0.575397
+## [106]	val-mlogloss:1.013753	train-mlogloss:0.572872
+## [107]	val-mlogloss:1.014162	train-mlogloss:0.569962
+## [108]	val-mlogloss:1.013819	train-mlogloss:0.567636
+## [109]	val-mlogloss:1.014174	train-mlogloss:0.565752
+## [110]	val-mlogloss:1.013492	train-mlogloss:0.563507
+## [111]	val-mlogloss:1.013502	train-mlogloss:0.561280
+## [112]	val-mlogloss:1.014239	train-mlogloss:0.559229
+## [113]	val-mlogloss:1.014788	train-mlogloss:0.556708
+## [114]	val-mlogloss:1.014760	train-mlogloss:0.554808
+## [115]	val-mlogloss:1.014873	train-mlogloss:0.552493
+## [116]	val-mlogloss:1.015329	train-mlogloss:0.550759
+## [117]	val-mlogloss:1.015159	train-mlogloss:0.548503
+## [118]	val-mlogloss:1.015371	train-mlogloss:0.545967
+## [119]	val-mlogloss:1.016084	train-mlogloss:0.543564
+## [120]	val-mlogloss:1.016084	train-mlogloss:0.541570
+## [121]	val-mlogloss:1.016467	train-mlogloss:0.539090
+## [122]	val-mlogloss:1.017337	train-mlogloss:0.537389
+## [123]	val-mlogloss:1.017493	train-mlogloss:0.535167
+## [124]	val-mlogloss:1.018021	train-mlogloss:0.533276
+## [125]	val-mlogloss:1.018554	train-mlogloss:0.532195
+## [126]	val-mlogloss:1.019542	train-mlogloss:0.530230
+## [127]	val-mlogloss:1.019874	train-mlogloss:0.527978
+## [128]	val-mlogloss:1.020485	train-mlogloss:0.526104
+## [129]	val-mlogloss:1.021216	train-mlogloss:0.524623
+## [130]	val-mlogloss:1.021609	train-mlogloss:0.522807
+## [131]	val-mlogloss:1.021855	train-mlogloss:0.520978
+## [132]	val-mlogloss:1.021801	train-mlogloss:0.519111
+## [133]	val-mlogloss:1.022010	train-mlogloss:0.517586
+## [134]	val-mlogloss:1.022735	train-mlogloss:0.515925
+## [135]	val-mlogloss:1.022904	train-mlogloss:0.514064
+## [136]	val-mlogloss:1.023072	train-mlogloss:0.512430
+## [137]	val-mlogloss:1.023158	train-mlogloss:0.510579
+## [138]	val-mlogloss:1.023666	train-mlogloss:0.508805
+## [139]	val-mlogloss:1.023804	train-mlogloss:0.507285
+## [140]	val-mlogloss:1.024949	train-mlogloss:0.505673
+## [141]	val-mlogloss:1.025144	train-mlogloss:0.504010
+## [142]	val-mlogloss:1.025611	train-mlogloss:0.502415
+## [143]	val-mlogloss:1.026423	train-mlogloss:0.500580
+## [144]	val-mlogloss:1.026997	train-mlogloss:0.499119
+## [145]	val-mlogloss:1.027250	train-mlogloss:0.496865
+## [146]	val-mlogloss:1.028180	train-mlogloss:0.495279
+## [147]	val-mlogloss:1.028278	train-mlogloss:0.493426
+## [148]	val-mlogloss:1.028553	train-mlogloss:0.491444
+## [149]	val-mlogloss:1.028579	train-mlogloss:0.490144
+## [150]	val-mlogloss:1.029164	train-mlogloss:0.488235
+## [151]	val-mlogloss:1.030640	train-mlogloss:0.486696
+## [152]	val-mlogloss:1.030533	train-mlogloss:0.485393
+## [153]	val-mlogloss:1.031575	train-mlogloss:0.484088
+## [154]	val-mlogloss:1.032483	train-mlogloss:0.482766
+## [155]	val-mlogloss:1.033470	train-mlogloss:0.481424
+## [156]	val-mlogloss:1.034227	train-mlogloss:0.479877
+## [157]	val-mlogloss:1.034673	train-mlogloss:0.478428
+## [158]	val-mlogloss:1.035489	train-mlogloss:0.476811
+## [159]	val-mlogloss:1.035815	train-mlogloss:0.475326
+## [160]	val-mlogloss:1.036737	train-mlogloss:0.473603
+## Stopping. Best iteration: 111
 {% endhighlight %}
  
 Once the model is done, I like to look at the importance of the features included:
@@ -216,45 +227,45 @@ I should note that at present this model is not performing too well but it is ju
  
 
 {% highlight text %}
-## [1] 23.53986
+## [1] 23.16573
 {% endhighlight %}
  
 We are a long way off.
  
-Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
+Here is a quick break down for each group.  What the model does is assign a probability for each id as to which giving method they used so each row should sum to 1.  I labeled the first column as intercept which may not be quite right.  It might be more like the residual or the probability that it belongs to no class.  In any case, that probability is always very small and can be ignored.
  
 We can see that the model struggles to identify those that give in person.
  
 
 {% highlight text %}
-##            int     person      mail       phone     online   id target
-## 7  0.003359201 0.06729294 0.8778047 0.007526707 0.04401642  519      1
-## 16 0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 1280      1
-## 22 0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 2420      1
-## 25 0.007740805 0.43735009 0.4561079 0.031226980 0.06757420 4899      1
-## 26 0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 4928      1
-## 34 0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 6409      1
-## 38 0.005955158 0.24931282 0.4316050 0.276899695 0.03622730 7056      1
-## 39 0.006295884 0.38608423 0.5118341 0.018325686 0.07746006 7278      1
-## 46 0.004131482 0.50714368 0.4569422 0.012873973 0.01890871 8559      1
-## 50 0.007615761 0.06572634 0.4316943 0.023847446 0.47111613 9389      1
+##            int     person       mail       phone      online   id target
+## 1  0.003894710 0.11145866 0.78291196 0.012381732 0.089352980  162      1
+## 4  0.001766358 0.05437046 0.90918684 0.006218268 0.028458007  519      1
+## 10 0.003768742 0.06368329 0.31300664 0.013795818 0.605745494 1280      1
+## 11 0.003268404 0.16128048 0.72526485 0.060543004 0.049643245 1402      1
+## 13 0.003768742 0.06368329 0.31300664 0.013795818 0.605745494 2420      1
+## 18 0.003077914 0.38370138 0.53153563 0.005768122 0.075916946 4899      1
+## 19 0.001138055 0.02211350 0.97121710 0.002240609 0.003290790 4928      1
+## 25 0.001526082 0.03727388 0.95324224 0.003565117 0.004392726 5866      1
+## 26 0.002925514 0.78065723 0.08614931 0.027948357 0.102319583 5868      1
+## 27 0.003892025 0.05962785 0.42144647 0.012931160 0.502102494 6409      1
 {% endhighlight %}
  
 It does fairly well with those that give by sending a check through the mail.
  
 
 {% highlight text %}
-##            int     person      mail       phone     online  id target
-## 1  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 355      2
-## 2  0.004380052 0.39190200 0.5703541 0.006143480 0.02722035 356      2
-## 3  0.002684170 0.04337558 0.9115510 0.004304499 0.03808480 386      2
-## 4  0.006816243 0.05887737 0.7236111 0.017922351 0.19277288 491      2
-## 5  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 503      2
-## 8  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 566      2
-## 9  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 679      2
-## 10 0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 689      2
-## 11 0.003804006 0.52841663 0.4409716 0.006580134 0.02022763 753      2
-## 12 0.005705449 0.03896137 0.6722894 0.014751926 0.26829192 778      2
+##            int     person      mail       phone      online   id target
+## 2  0.002487211 0.09657648 0.8848721 0.006085883 0.009978349  345      2
+## 3  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  503      2
+## 5  0.001766358 0.05437046 0.9091868 0.006218268 0.028458007  519      2
+## 6  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  679      2
+## 7  0.002765174 0.19667074 0.7871242 0.005444095 0.007995760  753      2
+## 8  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  757      2
+## 9  0.002765174 0.19667074 0.7871242 0.005444095 0.007995760  771      2
+## 12 0.004976281 0.39584348 0.5061289 0.020338623 0.072712757 1606      2
+## 14 0.005154495 0.46643564 0.1989040 0.038126353 0.291379601 2434      2
+## 15 0.003854415 0.15715955 0.7807682 0.006974746 0.051243130 2736      2
 {% endhighlight %}
  
 It also is decent at guessing donors who give over the phone.
@@ -262,38 +273,38 @@ It also is decent at guessing donors who give over the phone.
 
 {% highlight text %}
 ##             int     person       mail      phone     online    id target
-## 96  0.006867969 0.39268070 0.45476663 0.09771536 0.04796930 41044      3
-## 165 0.008710269 0.08021285 0.17544633 0.51470315 0.22092737 83825      3
-## 176 0.008887049 0.39015675 0.18958509 0.27069449 0.14067668 84774      3
-## 179 0.008767311 0.17562665 0.19748324 0.41097203 0.20715080 84997      3
-## 188 0.005981983 0.09171446 0.11481086 0.65270221 0.13479042 85782      3
-## 190 0.004826783 0.53774071 0.05696745 0.38079470 0.01967035 86077      3
-## 194 0.006130100 0.31922567 0.20285183 0.24367577 0.22811663 86345      3
-## 198 0.005744839 0.03059022 0.07675869 0.75888449 0.12802182 86604      3
-## 203 0.009253982 0.10594522 0.22583945 0.53049254 0.12846878 86800      3
-## 204 0.005973524 0.18114929 0.09927659 0.65132791 0.06227269 86830      3
+## 73  0.004506220 0.15115131 0.41069493 0.30802345 0.12562412 29079      3
+## 180 0.005614924 0.17375767 0.19609810 0.49497694 0.12955232 84977      3
+## 183 0.005274627 0.21108665 0.08738465 0.51206005 0.18419404 84997      3
+## 184 0.004322461 0.13194817 0.11993220 0.58163881 0.16215838 85001      3
+## 192 0.004385666 0.38481158 0.03770124 0.50182945 0.07127207 85952      3
+## 193 0.005727138 0.20266503 0.25251114 0.20584677 0.33324993 86052      3
+## 194 0.005069392 0.43627498 0.11189300 0.38965049 0.05711211 86077      3
+## 198 0.004667855 0.34375128 0.16319472 0.02286492 0.46552125 86345      3
+## 206 0.003257909 0.13403651 0.08382569 0.66423970 0.11464017 86731      3
+## 207 0.001866081 0.05640193 0.01631556 0.87584889 0.04956752 86800      3
 {% endhighlight %}
  
 However, it does not do as well predicting who gives online.
  
 
 {% highlight text %}
-##             int     person      mail       phone     online    id target
-## 6   0.003425406 0.03227650 0.8122783 0.007251971 0.14476775   513      4
-## 35  0.004963682 0.14474791 0.2614189 0.071880348 0.51698917  6636      4
-## 43  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670  8043      4
-## 54  0.002704712 0.11759853 0.8575099 0.004678586 0.01750828 10046      4
-## 58  0.005569647 0.06275334 0.2402193 0.020977683 0.67048007 12325      4
-## 67  0.004086843 0.09862112 0.8144931 0.011132821 0.07166620 22339      4
-## 89  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 34686      4
-## 91  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 35702      4
-## 93  0.004448269 0.05196352 0.1850839 0.016727636 0.74177670 36357      4
-## 111 0.006371358 0.29865688 0.3690878 0.018995168 0.30688882 58827      4
+##             int     person       mail       phone     online    id target
+## 29  0.003635308 0.09235315 0.44117379 0.022745626 0.44009209  6636      4
+## 47  0.001138055 0.02211350 0.97121710 0.002240609 0.00329079 10046      4
+## 70  0.002654173 0.11769284 0.06580912 0.766535223 0.04730868 27512      4
+## 75  0.003768742 0.06368329 0.31300664 0.013795818 0.60574549 30896      4
+## 80  0.003892025 0.05962785 0.42144647 0.012931160 0.50210249 34686      4
+## 81  0.003892025 0.05962785 0.42144647 0.012931160 0.50210249 35702      4
+## 106 0.002754199 0.72612566 0.16267577 0.025286134 0.08315827 59474      4
+## 115 0.004557631 0.38230813 0.36322647 0.033862792 0.21604498 66903      4
+## 124 0.006003804 0.55004025 0.26239112 0.126836970 0.05472788 72788      4
+## 128 0.003513141 0.15629244 0.36962089 0.019229865 0.45134369 72858      4
 {% endhighlight %}
  
 With all of that out of the way, to start the conversation and add a few ideas on what factors contribute to which method of giving, here are a few graphs.
  
-First here is the break down of the number of donors in each category.  It's not even but it is not overly donimated by any one categoy either which is good.
+First here is the break down of the number of donors in each category.  It's not even but it is not overly dominated by any one category either which is good.
  
  
 ![plot of chunk unnamed-chunk-9](/figures/unnamed-chunk-9-1.png)
@@ -301,21 +312,63 @@ First here is the break down of the number of donors in each category.  It's not
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.
 I also feel that every age bracket has a method so this seems useful.
  
+To make each category clear:
+* Lockbox is check in the mail
+* Online Giving is online giving
+* Staff is giving in person to a staff member
+* TOP Gift is giving over the phone through our Telephone Outreach Program
+ 
 ![plot of chunk unnamed-chunk-10](/figures/unnamed-chunk-10-1.png)
  
-First looking at that variable on whether a constiuent is married, not married and male or not married and female.  It's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.
+Looking at that variable on whether a constituent is married, not married and male or not married and female, it's a little interesting that men seem to give more online and women give more over the phone but it is not a very significant difference.  The fact that married couples give more through the mail I believe is using the age data since older people are more likely to be married and we already saw that older people prefer to give in this way.
+ 
+Again, these codes are:
+ 
+* 1 means married
+* 2 means not married and constituent is male
+* 3 means not married and constituent is female
+* 4 means company
+* 5 means foundation
+* 6 means missing information or other
  
 ![plot of chunk unnamed-chunk-11](/figures/unnamed-chunk-11-1.png)
  
-The chart on ask count was also quite insightful.  It appears that people give based on how you ask them.  If you call someone numerous times they will give that way and if you email numerous times then online will be their choice and so on.  This actually reminds me of a small nonprofit in Detroit.  I don't remember the name but they won an award at a Blackbaud conference and their trick for increasing gifts was to just ask more often which flies in the face of some of the conventional thought that seems to suggest that this type of behavior would be detrimental.  In any case, this is obviously just the trends in our data and it doesn't mean it would work everywhere but it seems like a possible factor to consider.
+A quick note on these plots.  The y-axis is density so it is basically answering the question: of those that fall into a particular category what is the distribution in giving method choice; what is the percentage that choose to give via a particular method by category type.
  
-![plot of chunk unnamed-chunk-12](/figures/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](/figures/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](/figures/unnamed-chunk-12-3.png)
+The chart on ask count was also quite insightful.  It appears that people give based on how you ask them.  If you call someone numerous times they will give that way and if you email numerous times then online will be their choice and so on.  
  
-Next, looking at the constiuent type which is a little busy and for me there are not many insights to glean.
+This actually reminds me of a small nonprofit in Detroit.  I don't remember the name but they won an award at a Blackbaud conference in 2012 and their trick for increasing gifts was to just ask more often which I think may fly in the face of some of the conventional thought that seems to suggest that this type of behavior would be detrimental.  In any case, this is obviously just the trends in our data and it doesn't mean it would work everywhere but it seems like a possible factor to consider.
+ 
+Those with two calls gave over the phone more often than those that just received one.
+ 
+![plot of chunk unnamed-chunk-12](/figures/unnamed-chunk-12-1.png)
+ 
+Mail is interesting as it almost seems to be a reminder to give online at first but after four mailings we finally wear down the holdouts and they relent and send us money perhaps just to stop the mailings.
  
 ![plot of chunk unnamed-chunk-13](/figures/unnamed-chunk-13-1.png)
-  
-Lastly, geographic distance also does not add too much more information.
+ 
+Email also shows this trend where the more we ask via email for a gift, the more we see constituents choosing to give online.
  
 ![plot of chunk unnamed-chunk-14](/figures/unnamed-chunk-14-1.png)
  
+The next plot looks at the constituent type which is a little busy and for me there are not many insights to glean.
+ 
+I will provide a legend for a few of the types:
+* C is company
+* F is foundation
+* rs is retired staff
+* S is staff
+* I is any individual who is not staff
+ 
+Most companies give directly to a staff member which makes sense.  Retired staff send in checks which again references the trends seen in the age data earlier.  Current staff give online since that is probably the easiest way for them to give.  
+ 
+![plot of chunk unnamed-chunk-15](/figures/unnamed-chunk-15-1.png)
+  
+The last plot is on geographic distance which does not offer very much additional insight.
+ 
+![plot of chunk unnamed-chunk-16](/figures/unnamed-chunk-16-1.png)
+ 
+This is just a post and some code to get the conversation started.  It will be interesting to see if anyone has anything additional to add.  For me these are the takeaways at this stage in researching this question:
+ 
+* Age seems to matter and I think experimenting with targeting the way we ask by age may be beneficial
+* Ask frequency seems to help.  These days it is so easy to ignore anything that we do not want to deal with immediately that these types of reminders may actually be helpful and keep your organization top of mind as well as increase your chance of connecting with someone when they have the time to give right at the moment.
