@@ -1,0 +1,88 @@
+index,date,day,month,year,submitter,submitter_city,country,Link,link_location,link_type,col,artist,song
+1,1/2/18,2,1,2018,Andrew,Sheffield,United Kingdom,Song titles are all part of a football ground,Song Titles,Category,sa1,Scott Walker,Montague Terrace (In Blue)
+1,1/2/18,2,1,2018,Andrew,Sheffield,United Kingdom,Song titles are all part of a football ground,Song Titles,Category,sa2,The Doors,The End
+1,1/2/18,2,1,2018,Andrew,Sheffield,United Kingdom,Song titles are all part of a football ground,Song Titles,Category,sa3,REM,Stand
+2,1/3/18,3,1,2018,Simon,Darlydale,United Kingdom,Lyrics mention breeds of birds,Lyrics,Category,sa1,Cream,White Room
+2,1/3/18,3,1,2018,Simon,Darlydale,United Kingdom,Lyrics mention breeds of birds,Lyrics,Category,sa2,Bob Dylan,If Not For You
+2,1/3/18,3,1,2018,Simon,Darlydale,United Kingdom,Lyrics mention breeds of birds,Lyrics,Category,sa3,Roxy Music,Nightingale
+3,1/4/18,4,1,2018,Peter,Hayward's Heath,United Kingdom,Song Titles share titles with Carl Hiaasen books,Song Titles,Category,sa1,Lightning Seeds,Lucky You
+3,1/4/18,4,1,2018,Peter,Hayward's Heath,United Kingdom,Song Titles share titles with Carl Hiaasen books,Song Titles,Category,sa2,Pixies,Stormy Weatherq
+3,1/4/18,4,1,2018,Peter,Hayward's Heath,United Kingdom,Song Titles share titles with Carl Hiaasen books,Song Titles,Category,sa3,Green Day,Basket Case
+4,1/5/18,5,1,2018,Phil,Sunderland,United Kingdom,Lyrics mention types of cars,Lyrics,Category,sa1,Gomez,Get Myself Arrested
+4,1/5/18,5,1,2018,Phil,Sunderland,United Kingdom,Lyrics mention types of cars,Lyrics,Category,sa2,Velvet Underground,Sweet Jane
+4,1/5/18,5,1,2018,Phil,Sunderland,United Kingdom,Lyrics mention types of cars,Lyrics,Category,sa3,B-52s,Love Shack
+5,1/8/18,8,1,2018,June,Hastings,United Kingdom,All album covers based on a work of art,Album Art,Category,sa1,Beach Boys,Feel Flows
+5,1/8/18,8,1,2018,June,Hastings,United Kingdom,All album covers based on a work of art,Album Art,Category,sa2,New Order,Age of Consent
+5,1/8/18,8,1,2018,June,Hastings,United Kingdom,All album covers based on a work of art,Album Art,Category,sa3,The Pogues,I'm a Man You Don't Meet Every Day
+6,1/9/18,9,1,2018,Lee,Wallasey,United Kingdom,All songs had Beatles cover songs as a b-side on the original 7 inch singles,Album Songs,Category,sa1,The Damned,New Rose
+6,1/9/18,9,1,2018,Lee,Wallasey,United Kingdom,All songs had Beatles cover songs as a b-side on the original 7 inch singles,Album Songs,Category,sa2,Oasis,Cigarettes & Alcohol
+6,1/9/18,9,1,2018,Lee,Wallasey,United Kingdom,All songs had Beatles cover songs as a b-side on the original 7 inch singles,Album Songs,Category,sa3,The Mission,Severina
+7,1/10/18,10,1,2018,Paul,Aylesbury,United Kingdom,Song titles contain numbers from Fibonacci sequence,Song Titles,Category,sa1,Luniz,I got 5 on it
+7,1/10/18,10,1,2018,Paul,Aylesbury,United Kingdom,Song titles contain numbers from Fibonacci sequence,Song Titles,Category,sa2,The Byrds,Eight Miles High
+7,1/10/18,10,1,2018,Paul,Aylesbury,United Kingdom,Song titles contain numbers from Fibonacci sequence,Song Titles,Category,sa3,Johnny Cash,Thirteen
+8,1/11/18,11,1,2018,Tim,Berlin,Germany,Song Titles use formula I ____ You,Song Titles,Term,sa1,Split Enz,I Got You
+8,1/11/18,11,1,2018,Tim,Berlin,Germany,Song Titles use formula I ____ You,Song Titles,Term,sa2,The Beatles,I Need You
+8,1/11/18,11,1,2018,Tim,Berlin,Germany,Song Titles use formula I ____ You,Song Titles,Term,sa3,Bob Dylan,I Want You
+9,1/12/18,12,1,2018,John,Cirencester,United Kingdom,All Song Titles include names from the 2003 Rugby Union winning England team,Song Titles,Category,sa1,The Brothers Johnson,Stomp!
+9,1/12/18,12,1,2018,John,Cirencester,United Kingdom,All Song Titles include names from the 2003 Rugby Union winning England team,Song Titles,Category,sa2,Echo & The Bunnymen,The Back of Love
+9,1/12/18,12,1,2018,John,Cirencester,United Kingdom,All Song Titles include names from the 2003 Rugby Union winning England team,Song Titles,Category,sa3,Kate Bush,Running Up That Hill
+10,1/15/18,15,1,2018,Graham,Newport,United Kingdom,Elephants,Album Art,Term,sa1,Elvis Costello,Green Shirt
+10,1/15/18,15,1,2018,Graham,Newport,United Kingdom,Elephants,Album Art,Term,sa2,World Party,Way Down Now
+10,1/15/18,15,1,2018,Graham,Newport,United Kingdom,Elephants,Album Art,Term,sa3,The White Stripes,Seven Nation Army
+11,1/16/18,16,1,2018,Alan,Glasgow,United Kingdom,All song titles contain a color and appear on album with a different color in the title,Album and Song Title,Category,sa1,REM,Orange Crush
+11,1/16/18,16,1,2018,Alan,Glasgow,United Kingdom,All song titles contain a color and appear on album with a different color in the title,Album and Song Title,Category,sa2,Frank Ocean,Pink Matter
+11,1/16/18,16,1,2018,Alan,Glasgow,United Kingdom,All song titles contain a color and appear on album with a different color in the title,Album and Song Title,Category,sa3,Prince,Computer Blue
+12,1/17/18,17,1,2018,Richard,Studley,United Kingdom,All songs feature prominent trombone solo,Music,Instrument,sa1,Thomas Dolby,I Scare Myself
+12,1/17/18,17,1,2018,Richard,Studley,United Kingdom,All songs feature prominent trombone solo,Music,Instrument,sa2,The Specials,Ghost Town
+12,1/17/18,17,1,2018,Richard,Studley,United Kingdom,All songs feature prominent trombone solo,Music,Instrument,sa3,Groove Armada,At the River
+13,1/18/18,18,1,2018,Amy,Carlisle,United Kingdom,"All songs contain ""Joan of Arc"" in the lyrics",Lyrics,Term,sa1,Garbage,Vow
+13,1/18/18,18,1,2018,Amy,Carlisle,United Kingdom,"All songs contain ""Joan of Arc"" in the lyrics",Lyrics,Term,sa2,Orchestral Manoeuvres in the Dark,Joan of Arc
+13,1/18/18,18,1,2018,Amy,Carlisle,United Kingdom,"All songs contain ""Joan of Arc"" in the lyrics",Lyrics,Term,sa3,The Smiths,Big Mouth Strikes Again
+14,1/19/18,19,1,2018,Bobby,The Lakes,United Kingdom,Aretha Franklin songs mentioned in lyrics,Lyrics,Category,sa1,Scritti Politti,The Word Girl
+14,1/19/18,19,1,2018,Bobby,The Lakes,United Kingdom,Aretha Franklin songs mentioned in lyrics,Lyrics,Category,sa2,The Buzzcocks,ESP
+14,1/19/18,19,1,2018,Bobby,The Lakes,United Kingdom,Aretha Franklin songs mentioned in lyrics,Lyrics,Category,sa3,Rock Steady Crew,(Hey You) The Rock Steady Crew
+15,1/21/18,22,1,2018,Vegan Sarah,NA,NA,Young in Album Title,Album Title,Term,sa1,Kings of Leon,Red Morning Light
+15,1/21/18,22,1,2018,Vegan Sarah,NA,NA,Young in Album Title,Album Title,Term,sa2,Anais Mitchell,Tailor
+15,1/21/18,22,1,2018,Vegan Sarah,NA,NA,Young in Album Title,Album Title,Term,sa3,David Bowie,(from Young Americans)
+16,1/23/18,23,1,2018,Simon,Leicester,United Kingdom,A reference to 4 AM in the lyrics,Lyrics,Term,sa1,Prefab Sprout,Faron Young
+16,1/23/18,23,1,2018,Simon,Leicester,United Kingdom,A reference to 4 AM in the lyrics,Lyrics,Term,sa2,Husker Du,Don't Want To Know If You Are Lonely
+16,1/23/18,23,1,2018,Simon,Leicester,United Kingdom,A reference to 4 AM in the lyrics,Lyrics,Term,sa3,New Radicals,You Get What You Give
+17,1/24/18,24,1,2018,Richard,Lincoln,United Kingdom,"All songs begin with phrase ""I was born""",Lyrics,Term,sa1,Otis Redding,A Change Is Gonna Come
+17,1/24/18,24,1,2018,Richard,Lincoln,United Kingdom,"All songs begin with phrase ""I was born""",Lyrics,Term,sa2,Captain Beefheart and his Magic Band,Sure 'Nuff 'N Yes I Do
+17,1/24/18,24,1,2018,Richard,Lincoln,United Kingdom,"All songs begin with phrase ""I was born""",Lyrics,Term,sa3,Rolling Stones,Jumping Jack Flash
+18,1/25/18,25,1,2018,Simon,NA,NA,NA,NA,NA,sa1,The Mission (UK),Tower of Strength
+18,1/25/18,25,1,2018,Simon,NA,NA,NA,NA,NA,sa2,Donovan,Hurdy Gurdy Man
+18,1/25/18,25,1,2018,Simon,NA,NA,NA,NA,NA,sa3,Led Zeppelin,The Battle of Evermore
+19,1/26/18,26,1,2018,Ewen,Wigan,United Kingdom,Bassist sings lead vocals,Band Member,Person,sa1,REM,Near Wild Heaven
+19,1/26/18,26,1,2018,Ewen,Wigan,United Kingdom,Bassist sings lead vocals,Band Member,Person,sa2,New Order,Dreams Never End
+19,1/26/18,26,1,2018,Ewen,Wigan,United Kingdom,Bassist sings lead vocals,Band Member,Person,sa3,Pixies,Gigantic
+20,1/29/18,29,1,2018,John,Rugsby,United Kingdom,"All lyrics include phrase ""Shut your mouth""",Lyrics,Term,sa1,The Clash,Clash City Rockers
+20,1/29/18,29,1,2018,John,Rugsby,United Kingdom,"All lyrics include phrase ""Shut your mouth""",Lyrics,Term,sa2,Dexy's Midnight Runners,Dance Stance
+20,1/29/18,29,1,2018,John,Rugsby,United Kingdom,"All lyrics include phrase ""Shut your mouth""",Lyrics,Term,sa3,Julian Cope,World Shut Your Mouth
+21,1/30/18,30,1,2018,NA,NA,NA,All Song Titles contain the name of a Quiz show host,Song Titles,Category,sa1,David Bowie,"John, I'm Only Dancing"
+21,1/30/18,30,1,2018,NA,NA,NA,All Song Titles contain the name of a Quiz show host,Song Titles,Category,sa2,Supergrass,Richard III
+21,1/30/18,30,1,2018,NA,NA,NA,All Song Titles contain the name of a Quiz show host,Song Titles,Category,sa3,The Kinks,Victoria
+22,1/31/18,31,1,2018,Alan,Glasgow,United Kingdon,Every song mentions another band or artist in the lyrics,Lyrics,Category,sa1,The Undertones,My Perfect Cousin
+22,1/31/18,31,1,2018,Alan,Glasgow,United Kingdon,Every song mentions another band or artist in the lyrics,Lyrics,Category,sa2,Bruce Springsteen,Thunder Road
+22,1/31/18,31,1,2018,Alan,Glasgow,United Kingdon,Every song mentions another band or artist in the lyrics,Lyrics,Category,sa3,Beastie Boys,Sabotage
+23,2/1/18,1,2,2018,Jack,Hertfordshire,United Kingdom,"All lyrics contain the phrase ""She's gone to stay""",Lyrics,Term,sa1,Bill Withers,Ain't No Sunshine
+23,2/1/18,1,2,2018,Jack,Hertfordshire,United Kingdom,"All lyrics contain the phrase ""She's gone to stay""",Lyrics,Term,sa2,Prince,I Could Never Take The Place of Your Man
+23,2/1/18,1,2,2018,Jack,Hertfordshire,United Kingdom,"All lyrics contain the phrase ""She's gone to stay""",Lyrics,Term,sa3,Cream,Sitting on Top of the World
+24,2/2/18,2,2,2018,NA,Minmith,NA,"Defunct British motorcycle manufacturers (James, Scott, Silk)",Artist,Category,sa1,James,Just like Fred Astaire
+24,2/2/18,2,2,2018,NA,Minmith,NA,"Defunct British motorcycle manufacturers (James, Scott, Silk)",Artist,Category,sa2,Scott Walker,Jackie
+24,2/2/18,2,2,2018,NA,Minmith,NA,"Defunct British motorcycle manufacturers (James, Scott, Silk)",Artist,Category,sa3,"Steve ""Silk"" Hurley",Jack Your Body
+25,2/5/18,5,2,2018,Robert,Ankara,Turkey,"The term ""Kit"" appears in either song title or artist",Artist and Song Title,Term,sa1,First Aid Kit,Emmylou
+25,2/5/18,5,2,2018,Robert,Ankara,Turkey,"The term ""Kit"" appears in either song title or artist",Artist and Song Title,Term,sa2,This is the Kit,Moonshine Freeze
+25,2/5/18,5,2,2018,Robert,Ankara,Turkey,"The term ""Kit"" appears in either song title or artist",Artist and Song Title,Term,sa3,Half Man Half Biscuit,Christmas is a Dukla Prague Away Kit
+26,2/6/18,6,2,2018,Ian,Billinghurst,United Kingdom,All band members contain a member who shares a name with 1966 World Cup winning England soccer team,Band Member,Category,sa1,Soft Cell,"Say Hello, Wave Goodbye"
+26,2/6/18,6,2,2018,Ian,Billinghurst,United Kingdom,All band members contain a member who shares a name with 1966 World Cup winning England soccer team,Band Member,Category,sa2,The Beach Boys,You Still Believe In Me
+26,2/6/18,6,2,2018,Ian,Billinghurst,United Kingdom,All band members contain a member who shares a name with 1966 World Cup winning England soccer team,Band Member,Category,sa3,The Alarm,Where Were You Hiding When The Storm Broke?
+27,2/7/18,7,2,2018,Stacy,East Dulwich,United Kingdom,All band names are the names of underground transit systems,Artist,Category,sa1,The Subways,Rock 'n' Roll Queen
+27,2/7/18,7,2,2018,Stacy,East Dulwich,United Kingdom,All band names are the names of underground transit systems,Artist,Category,sa2,Metronomy,Heartbreaker
+27,2/7/18,7,2,2018,Stacy,East Dulwich,United Kingdom,All band names are the names of underground transit systems,Artist,Category,sa3,Sunshine Underground,Borders
+28,2/8/18,8,2,2018,Colin,,,"All Songs titles ""Come Together""",Song Titles,Term,sa1,Spiritualized,Come Together
+28,2/8/18,8,2,2018,Colin,,,"All Songs titles ""Come Together""",Song Titles,Term,sa2,Primal Scream,Come Together
+28,2/8/18,8,2,2018,Colin,,,"All Songs titles ""Come Together""",Song Titles,Term,sa3,The Beatles,Come Together
+29,2/9/18,9,2,2018,Laws of the Dean,,,All song lyrics mention elements of horoscopes,Lyrics,Category,sa1,Suzanne Vega,Tom's Diner
+29,2/9/18,9,2,2018,Laws of the Dean,,,All song lyrics mention elements of horoscopes,Lyrics,Category,sa2,Darwin Deez,Constellations
+29,2/9/18,9,2,2018,Laws of the Dean,,,All song lyrics mention elements of horoscopes,Lyrics,Category,sa3,Grandmaster Flash and the Furious Five,Scorpio
