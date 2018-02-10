@@ -52,168 +52,7 @@ This next part is just the report out from the model.  I cannot seem to hide it 
  
 
 {% highlight text %}
-## [0]	val-mlogloss:1.573021	train-mlogloss:1.566801
-## [1]	val-mlogloss:1.542564	train-mlogloss:1.529456
-## [2]	val-mlogloss:1.518447	train-mlogloss:1.496815
-## [3]	val-mlogloss:1.488326	train-mlogloss:1.461229
-## [4]	val-mlogloss:1.462185	train-mlogloss:1.429590
-## [5]	val-mlogloss:1.442493	train-mlogloss:1.403462
-## [6]	val-mlogloss:1.418824	train-mlogloss:1.374059
-## [7]	val-mlogloss:1.396360	train-mlogloss:1.346390
-## [8]	val-mlogloss:1.376456	train-mlogloss:1.319052
-## [9]	val-mlogloss:1.354986	train-mlogloss:1.293203
-## [10]	val-mlogloss:1.337133	train-mlogloss:1.267126
-## [11]	val-mlogloss:1.319295	train-mlogloss:1.243102
-## [12]	val-mlogloss:1.306464	train-mlogloss:1.221627
-## [13]	val-mlogloss:1.293017	train-mlogloss:1.201316
-## [14]	val-mlogloss:1.276974	train-mlogloss:1.178625
-## [15]	val-mlogloss:1.265909	train-mlogloss:1.160488
-## [16]	val-mlogloss:1.254487	train-mlogloss:1.143027
-## [17]	val-mlogloss:1.242049	train-mlogloss:1.124598
-## [18]	val-mlogloss:1.229030	train-mlogloss:1.105606
-## [19]	val-mlogloss:1.219191	train-mlogloss:1.089167
-## [20]	val-mlogloss:1.207613	train-mlogloss:1.073157
-## [21]	val-mlogloss:1.199207	train-mlogloss:1.059713
-## [22]	val-mlogloss:1.191642	train-mlogloss:1.047457
-## [23]	val-mlogloss:1.181021	train-mlogloss:1.032885
-## [24]	val-mlogloss:1.171896	train-mlogloss:1.017604
-## [25]	val-mlogloss:1.165301	train-mlogloss:1.005522
-## [26]	val-mlogloss:1.158227	train-mlogloss:0.992049
-## [27]	val-mlogloss:1.149824	train-mlogloss:0.978554
-## [28]	val-mlogloss:1.143039	train-mlogloss:0.968725
-## [29]	val-mlogloss:1.138274	train-mlogloss:0.958425
-## [30]	val-mlogloss:1.130911	train-mlogloss:0.946467
-## [31]	val-mlogloss:1.125098	train-mlogloss:0.935771
-## [32]	val-mlogloss:1.119237	train-mlogloss:0.924547
-## [33]	val-mlogloss:1.113337	train-mlogloss:0.914362
-## [34]	val-mlogloss:1.108516	train-mlogloss:0.904058
-## [35]	val-mlogloss:1.102971	train-mlogloss:0.894525
-## [36]	val-mlogloss:1.097851	train-mlogloss:0.885303
-## [37]	val-mlogloss:1.094775	train-mlogloss:0.878390
-## [38]	val-mlogloss:1.089699	train-mlogloss:0.868678
-## [39]	val-mlogloss:1.085921	train-mlogloss:0.861370
-## [40]	val-mlogloss:1.082001	train-mlogloss:0.853485
-## [41]	val-mlogloss:1.079273	train-mlogloss:0.845864
-## [42]	val-mlogloss:1.075192	train-mlogloss:0.838520
-## [43]	val-mlogloss:1.072200	train-mlogloss:0.831788
-## [44]	val-mlogloss:1.070244	train-mlogloss:0.824490
-## [45]	val-mlogloss:1.066154	train-mlogloss:0.816739
-## [46]	val-mlogloss:1.063598	train-mlogloss:0.809148
-## [47]	val-mlogloss:1.060212	train-mlogloss:0.800574
-## [48]	val-mlogloss:1.057579	train-mlogloss:0.793868
-## [49]	val-mlogloss:1.054171	train-mlogloss:0.787677
-## [50]	val-mlogloss:1.052791	train-mlogloss:0.781321
-## [51]	val-mlogloss:1.050228	train-mlogloss:0.774556
-## [52]	val-mlogloss:1.048807	train-mlogloss:0.768752
-## [53]	val-mlogloss:1.046279	train-mlogloss:0.762640
-## [54]	val-mlogloss:1.044428	train-mlogloss:0.757771
-## [55]	val-mlogloss:1.041930	train-mlogloss:0.752710
-## [56]	val-mlogloss:1.039998	train-mlogloss:0.748384
-## [57]	val-mlogloss:1.038791	train-mlogloss:0.742690
-## [58]	val-mlogloss:1.038264	train-mlogloss:0.738483
-## [59]	val-mlogloss:1.036402	train-mlogloss:0.732569
-## [60]	val-mlogloss:1.034444	train-mlogloss:0.727580
-## [61]	val-mlogloss:1.032156	train-mlogloss:0.722772
-## [62]	val-mlogloss:1.030492	train-mlogloss:0.718089
-## [63]	val-mlogloss:1.029601	train-mlogloss:0.713212
-## [64]	val-mlogloss:1.028225	train-mlogloss:0.708559
-## [65]	val-mlogloss:1.026907	train-mlogloss:0.703856
-## [66]	val-mlogloss:1.025500	train-mlogloss:0.699402
-## [67]	val-mlogloss:1.024090	train-mlogloss:0.695040
-## [68]	val-mlogloss:1.023212	train-mlogloss:0.690821
-## [69]	val-mlogloss:1.022427	train-mlogloss:0.687205
-## [70]	val-mlogloss:1.021268	train-mlogloss:0.683740
-## [71]	val-mlogloss:1.020453	train-mlogloss:0.679436
-## [72]	val-mlogloss:1.020049	train-mlogloss:0.675814
-## [73]	val-mlogloss:1.019447	train-mlogloss:0.672031
-## [74]	val-mlogloss:1.019127	train-mlogloss:0.668735
-## [75]	val-mlogloss:1.019105	train-mlogloss:0.664999
-## [76]	val-mlogloss:1.018330	train-mlogloss:0.661002
-## [77]	val-mlogloss:1.017969	train-mlogloss:0.657266
-## [78]	val-mlogloss:1.016831	train-mlogloss:0.654118
-## [79]	val-mlogloss:1.017005	train-mlogloss:0.650460
-## [80]	val-mlogloss:1.015969	train-mlogloss:0.646964
-## [81]	val-mlogloss:1.016083	train-mlogloss:0.643579
-## [82]	val-mlogloss:1.016130	train-mlogloss:0.640616
-## [83]	val-mlogloss:1.014962	train-mlogloss:0.637862
-## [84]	val-mlogloss:1.014912	train-mlogloss:0.635358
-## [85]	val-mlogloss:1.015668	train-mlogloss:0.632128
-## [86]	val-mlogloss:1.015334	train-mlogloss:0.628814
-## [87]	val-mlogloss:1.014151	train-mlogloss:0.625450
-## [88]	val-mlogloss:1.014392	train-mlogloss:0.622806
-## [89]	val-mlogloss:1.014351	train-mlogloss:0.619587
-## [90]	val-mlogloss:1.014730	train-mlogloss:0.617160
-## [91]	val-mlogloss:1.014991	train-mlogloss:0.614247
-## [92]	val-mlogloss:1.015112	train-mlogloss:0.611346
-## [93]	val-mlogloss:1.014643	train-mlogloss:0.608458
-## [94]	val-mlogloss:1.015371	train-mlogloss:0.606079
-## [95]	val-mlogloss:1.015929	train-mlogloss:0.602996
-## [96]	val-mlogloss:1.015972	train-mlogloss:0.600237
-## [97]	val-mlogloss:1.015238	train-mlogloss:0.597016
-## [98]	val-mlogloss:1.015074	train-mlogloss:0.594226
-## [99]	val-mlogloss:1.014812	train-mlogloss:0.590992
-## [100]	val-mlogloss:1.014548	train-mlogloss:0.588286
-## [101]	val-mlogloss:1.014648	train-mlogloss:0.585326
-## [102]	val-mlogloss:1.014786	train-mlogloss:0.582756
-## [103]	val-mlogloss:1.014340	train-mlogloss:0.580652
-## [104]	val-mlogloss:1.014005	train-mlogloss:0.578498
-## [105]	val-mlogloss:1.013833	train-mlogloss:0.575397
-## [106]	val-mlogloss:1.013753	train-mlogloss:0.572872
-## [107]	val-mlogloss:1.014162	train-mlogloss:0.569962
-## [108]	val-mlogloss:1.013819	train-mlogloss:0.567636
-## [109]	val-mlogloss:1.014174	train-mlogloss:0.565752
-## [110]	val-mlogloss:1.013492	train-mlogloss:0.563507
-## [111]	val-mlogloss:1.013502	train-mlogloss:0.561280
-## [112]	val-mlogloss:1.014239	train-mlogloss:0.559229
-## [113]	val-mlogloss:1.014788	train-mlogloss:0.556708
-## [114]	val-mlogloss:1.014760	train-mlogloss:0.554808
-## [115]	val-mlogloss:1.014873	train-mlogloss:0.552493
-## [116]	val-mlogloss:1.015329	train-mlogloss:0.550759
-## [117]	val-mlogloss:1.015159	train-mlogloss:0.548503
-## [118]	val-mlogloss:1.015371	train-mlogloss:0.545967
-## [119]	val-mlogloss:1.016084	train-mlogloss:0.543564
-## [120]	val-mlogloss:1.016084	train-mlogloss:0.541570
-## [121]	val-mlogloss:1.016467	train-mlogloss:0.539090
-## [122]	val-mlogloss:1.017337	train-mlogloss:0.537389
-## [123]	val-mlogloss:1.017493	train-mlogloss:0.535167
-## [124]	val-mlogloss:1.018021	train-mlogloss:0.533276
-## [125]	val-mlogloss:1.018554	train-mlogloss:0.532195
-## [126]	val-mlogloss:1.019542	train-mlogloss:0.530230
-## [127]	val-mlogloss:1.019874	train-mlogloss:0.527978
-## [128]	val-mlogloss:1.020485	train-mlogloss:0.526104
-## [129]	val-mlogloss:1.021216	train-mlogloss:0.524623
-## [130]	val-mlogloss:1.021609	train-mlogloss:0.522807
-## [131]	val-mlogloss:1.021855	train-mlogloss:0.520978
-## [132]	val-mlogloss:1.021801	train-mlogloss:0.519111
-## [133]	val-mlogloss:1.022010	train-mlogloss:0.517586
-## [134]	val-mlogloss:1.022735	train-mlogloss:0.515925
-## [135]	val-mlogloss:1.022904	train-mlogloss:0.514064
-## [136]	val-mlogloss:1.023072	train-mlogloss:0.512430
-## [137]	val-mlogloss:1.023158	train-mlogloss:0.510579
-## [138]	val-mlogloss:1.023666	train-mlogloss:0.508805
-## [139]	val-mlogloss:1.023804	train-mlogloss:0.507285
-## [140]	val-mlogloss:1.024949	train-mlogloss:0.505673
-## [141]	val-mlogloss:1.025144	train-mlogloss:0.504010
-## [142]	val-mlogloss:1.025611	train-mlogloss:0.502415
-## [143]	val-mlogloss:1.026423	train-mlogloss:0.500580
-## [144]	val-mlogloss:1.026997	train-mlogloss:0.499119
-## [145]	val-mlogloss:1.027250	train-mlogloss:0.496865
-## [146]	val-mlogloss:1.028180	train-mlogloss:0.495279
-## [147]	val-mlogloss:1.028278	train-mlogloss:0.493426
-## [148]	val-mlogloss:1.028553	train-mlogloss:0.491444
-## [149]	val-mlogloss:1.028579	train-mlogloss:0.490144
-## [150]	val-mlogloss:1.029164	train-mlogloss:0.488235
-## [151]	val-mlogloss:1.030640	train-mlogloss:0.486696
-## [152]	val-mlogloss:1.030533	train-mlogloss:0.485393
-## [153]	val-mlogloss:1.031575	train-mlogloss:0.484088
-## [154]	val-mlogloss:1.032483	train-mlogloss:0.482766
-## [155]	val-mlogloss:1.033470	train-mlogloss:0.481424
-## [156]	val-mlogloss:1.034227	train-mlogloss:0.479877
-## [157]	val-mlogloss:1.034673	train-mlogloss:0.478428
-## [158]	val-mlogloss:1.035489	train-mlogloss:0.476811
-## [159]	val-mlogloss:1.035815	train-mlogloss:0.475326
-## [160]	val-mlogloss:1.036737	train-mlogloss:0.473603
-## Stopping. Best iteration: 111
+## Error in library(MLmetrics): there is no package called 'MLmetrics'
 {% endhighlight %}
  
 Once the model is done, I like to look at the importance of the features included:
@@ -228,7 +67,7 @@ I should note that at present this model is not performing too well but it is ju
  
 
 {% highlight text %}
-## [1] 23.16573
+## Error in MultiLogLoss(pred$target, pred[, 2:5]): could not find function "MultiLogLoss"
 {% endhighlight %}
  
 We are a long way off.
@@ -239,68 +78,112 @@ We can see that the model struggles to identify those that give in person.
  
 
 {% highlight text %}
-##            int     person       mail       phone      online   id target
-## 1  0.003894710 0.11145866 0.78291196 0.012381732 0.089352980  162      1
-## 4  0.001766358 0.05437046 0.90918684 0.006218268 0.028458007  519      1
-## 10 0.003768742 0.06368329 0.31300664 0.013795818 0.605745494 1280      1
-## 11 0.003268404 0.16128048 0.72526485 0.060543004 0.049643245 1402      1
-## 13 0.003768742 0.06368329 0.31300664 0.013795818 0.605745494 2420      1
-## 18 0.003077914 0.38370138 0.53153563 0.005768122 0.075916946 4899      1
-## 19 0.001138055 0.02211350 0.97121710 0.002240609 0.003290790 4928      1
-## 25 0.001526082 0.03727388 0.95324224 0.003565117 0.004392726 5866      1
-## 26 0.002925514 0.78065723 0.08614931 0.027948357 0.102319583 5868      1
-## 27 0.003892025 0.05962785 0.42144647 0.012931160 0.502102494 6409      1
+##             int       person      mail        phone       online   id
+## 1  4.658754e-05 4.532368e-03 0.9953577 5.274246e-06 5.805526e-05  162
+## 4  1.283136e-06 1.673028e-06 0.9999956 1.192595e-07 1.340992e-06  519
+## 10 3.346076e-03 1.561175e-01 0.1476913 2.989647e-01 3.938804e-01 1280
+## 11 7.138878e-04 4.262211e-01 0.5302647 1.018624e-05 4.279006e-02 1402
+## 13 3.346076e-03 1.561175e-01 0.1476913 2.989647e-01 3.938804e-01 2420
+## 18 3.243815e-04 3.671909e-01 0.5161801 2.868456e-04 1.160178e-01 4899
+## 19 1.027581e-04 8.821204e-03 0.9910619 1.185995e-05 2.235854e-06 4928
+## 25 1.214771e-05 9.357628e-04 0.9989618 8.941843e-05 8.102461e-07 5866
+## 26 3.542171e-03 4.254337e-01 0.3106384 7.940135e-02 1.809843e-01 5868
+## 27 1.624461e-03 1.757128e-01 0.3567415 2.011217e-01 2.647996e-01 6409
+##    target
+## 1       1
+## 4       1
+## 10      1
+## 11      1
+## 13      1
+## 18      1
+## 19      1
+## 25      1
+## 26      1
+## 27      1
 {% endhighlight %}
  
 It does fairly well with those that give by sending a check through the mail.
  
 
 {% highlight text %}
-##            int     person      mail       phone      online   id target
-## 2  0.002487211 0.09657648 0.8848721 0.006085883 0.009978349  345      2
-## 3  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  503      2
-## 5  0.001766358 0.05437046 0.9091868 0.006218268 0.028458007  519      2
-## 6  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  679      2
-## 7  0.002765174 0.19667074 0.7871242 0.005444095 0.007995760  753      2
-## 8  0.001138055 0.02211350 0.9712171 0.002240609 0.003290790  757      2
-## 9  0.002765174 0.19667074 0.7871242 0.005444095 0.007995760  771      2
-## 12 0.004976281 0.39584348 0.5061289 0.020338623 0.072712757 1606      2
-## 14 0.005154495 0.46643564 0.1989040 0.038126353 0.291379601 2434      2
-## 15 0.003854415 0.15715955 0.7807682 0.006974746 0.051243130 2736      2
+##             int       person      mail        phone       online   id
+## 2  3.031990e-07 1.408535e-07 0.9999974 2.231828e-06 2.643368e-09  345
+## 3  1.027581e-04 8.821204e-03 0.9910619 1.185995e-05 2.235854e-06  503
+## 5  1.283136e-06 1.673028e-06 0.9999956 1.192595e-07 1.340992e-06  519
+## 6  1.027581e-04 8.821204e-03 0.9910619 1.185995e-05 2.235854e-06  679
+## 7  3.017682e-04 3.855880e-01 0.6140689 3.482892e-05 6.401686e-06  753
+## 8  1.027581e-04 8.821204e-03 0.9910619 1.185995e-05 2.235854e-06  757
+## 9  3.017682e-04 3.855880e-01 0.6140689 3.482892e-05 6.401686e-06  771
+## 12 1.068792e-03 8.234528e-02 0.9153901 9.959318e-05 1.096226e-03 1606
+## 14 3.346076e-03 1.561175e-01 0.1476913 2.989647e-01 3.938804e-01 2434
+## 15 2.293826e-07 3.666242e-06 0.9999959 5.846894e-08 4.401463e-08 2736
+##    target
+## 2       2
+## 3       2
+## 5       2
+## 6       2
+## 7       2
+## 8       2
+## 9       2
+## 12      2
+## 14      2
+## 15      2
 {% endhighlight %}
  
 It also is decent at guessing donors who give over the phone.
  
 
 {% highlight text %}
-##             int     person       mail      phone     online    id target
-## 73  0.004506220 0.15115131 0.41069493 0.30802345 0.12562412 29079      3
-## 180 0.005614924 0.17375767 0.19609810 0.49497694 0.12955232 84977      3
-## 183 0.005274627 0.21108665 0.08738465 0.51206005 0.18419404 84997      3
-## 184 0.004322461 0.13194817 0.11993220 0.58163881 0.16215838 85001      3
-## 192 0.004385666 0.38481158 0.03770124 0.50182945 0.07127207 85952      3
-## 193 0.005727138 0.20266503 0.25251114 0.20584677 0.33324993 86052      3
-## 194 0.005069392 0.43627498 0.11189300 0.38965049 0.05711211 86077      3
-## 198 0.004667855 0.34375128 0.16319472 0.02286492 0.46552125 86345      3
-## 206 0.003257909 0.13403651 0.08382569 0.66423970 0.11464017 86731      3
-## 207 0.001866081 0.05640193 0.01631556 0.87584889 0.04956752 86800      3
+##              int     person        mail        phone       online    id
+## 73  1.624461e-03 0.17571278 0.356741488 2.011217e-01 2.647996e-01 29079
+## 180 5.562930e-02 0.08200957 0.704636931 1.432091e-01 1.451516e-02 84977
+## 183 3.542171e-03 0.42543367 0.310638428 7.940135e-02 1.809843e-01 84997
+## 184 1.708388e-03 0.09312628 0.434117019 2.111959e-03 4.689364e-01 85001
+## 192 3.756493e-06 0.99990821 0.000076864 7.021056e-07 1.045678e-05 85952
+## 193 1.708388e-03 0.09312628 0.434117019 2.111959e-03 4.689364e-01 86052
+## 194 3.243815e-04 0.36719093 0.516180098 2.868456e-04 1.160178e-01 86077
+## 198 1.624461e-03 0.17571278 0.356741488 2.011217e-01 2.647996e-01 86345
+## 206 3.542171e-03 0.42543367 0.310638428 7.940135e-02 1.809843e-01 86731
+## 207 3.346076e-03 0.15611745 0.147691339 2.989647e-01 3.938804e-01 86800
+##     target
+## 73       3
+## 180      3
+## 183      3
+## 184      3
+## 192      3
+## 193      3
+## 194      3
+## 198      3
+## 206      3
+## 207      3
 {% endhighlight %}
  
 However, it does not do as well predicting who gives online.
  
 
 {% highlight text %}
-##             int     person       mail       phone     online    id target
-## 29  0.003635308 0.09235315 0.44117379 0.022745626 0.44009209  6636      4
-## 47  0.001138055 0.02211350 0.97121710 0.002240609 0.00329079 10046      4
-## 70  0.002654173 0.11769284 0.06580912 0.766535223 0.04730868 27512      4
-## 75  0.003768742 0.06368329 0.31300664 0.013795818 0.60574549 30896      4
-## 80  0.003892025 0.05962785 0.42144647 0.012931160 0.50210249 34686      4
-## 81  0.003892025 0.05962785 0.42144647 0.012931160 0.50210249 35702      4
-## 106 0.002754199 0.72612566 0.16267577 0.025286134 0.08315827 59474      4
-## 115 0.004557631 0.38230813 0.36322647 0.033862792 0.21604498 66903      4
-## 124 0.006003804 0.55004025 0.26239112 0.126836970 0.05472788 72788      4
-## 128 0.003513141 0.15629244 0.36962089 0.019229865 0.45134369 72858      4
+##              int      person       mail        phone       online    id
+## 29  0.0017083881 0.093126282 0.43411702 2.111959e-03 4.689364e-01  6636
+## 47  0.0001027581 0.008821204 0.99106193 1.185995e-05 2.235854e-06 10046
+## 70  0.0035421711 0.425433666 0.31063843 7.940135e-02 1.809843e-01 27512
+## 75  0.0033460758 0.156117454 0.14769134 2.989647e-01 3.938804e-01 30896
+## 80  0.0016244611 0.175712779 0.35674149 2.011217e-01 2.647996e-01 34686
+## 81  0.0016244611 0.175712779 0.35674149 2.011217e-01 2.647996e-01 35702
+## 106 0.0035421711 0.425433666 0.31063843 7.940135e-02 1.809843e-01 59474
+## 115 0.0035421711 0.425433666 0.31063843 7.940135e-02 1.809843e-01 66903
+## 124 0.0009403804 0.954315722 0.04346919 1.114532e-03 1.602176e-04 72788
+## 128 0.0015277402 0.174877986 0.35842142 9.545509e-02 3.697177e-01 72858
+##     target
+## 29       4
+## 47       4
+## 70       4
+## 75       4
+## 80       4
+## 81       4
+## 106      4
+## 115      4
+## 124      4
+## 128      4
 {% endhighlight %}
  
 With all of that out of the way, to start the conversation and add a few ideas on what factors contribute to which method of giving, here are a few graphs.

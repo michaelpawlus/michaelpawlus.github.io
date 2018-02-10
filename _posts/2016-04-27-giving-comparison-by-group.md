@@ -16,17 +16,6 @@ First, load the ggplot2 library (use install.packages("ggplot2") if you don't ha
 
 {% highlight r %}
 library(ggplot2)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Warning: package 'ggplot2' was built under R version 3.2.4
-{% endhighlight %}
-
-
-
-{% highlight r %}
 library(RCurl)
 {% endhighlight %}
 
@@ -54,20 +43,20 @@ summary(ad)     ## summary of the data
 
 
 {% highlight text %}
-##      coreid         aff_total        coresex            coreprefyr      Degree         
-##  Min.   :  1923   Min.   :  0.00   Length:2878        Min.   :1967   Length:2878       
-##  1st Qu.:102878   1st Qu.:  4.00   Class :character   1st Qu.:1986   Class :character  
-##  Median :129104   Median :  7.00   Mode  :character   Median :2000   Mode  :character  
-##  Mean   :310682   Mean   : 10.17                      Mean   :1997                     
-##  3rd Qu.:597856   3rd Qu.: 11.00                      3rd Qu.:2009                     
-##  Max.   :727273   Max.   :248.00                      Max.   :2014                     
-##     Major                fy14              donor  
-##  Length:2878        Min.   :    0.27   Min.   :1  
-##  Class :character   1st Qu.:   25.00   1st Qu.:1  
-##  Mode  :character   Median :   50.00   Median :1  
-##                     Mean   :  351.06   Mean   :1  
-##                     3rd Qu.:  200.00   3rd Qu.:1  
-##                     Max.   :51245.54   Max.   :1
+##      coreid         aff_total        coresex            coreprefyr  
+##  Min.   :  1923   Min.   :  0.00   Length:2878        Min.   :1967  
+##  1st Qu.:102878   1st Qu.:  4.00   Class :character   1st Qu.:1986  
+##  Median :129104   Median :  7.00   Mode  :character   Median :2000  
+##  Mean   :310682   Mean   : 10.17                      Mean   :1997  
+##  3rd Qu.:597856   3rd Qu.: 11.00                      3rd Qu.:2009  
+##  Max.   :727273   Max.   :248.00                      Max.   :2014  
+##     Degree             Major                fy14              donor  
+##  Length:2878        Length:2878        Min.   :    0.27   Min.   :1  
+##  Class :character   Class :character   1st Qu.:   25.00   1st Qu.:1  
+##  Mode  :character   Mode  :character   Median :   50.00   Median :1  
+##                                        Mean   :  351.06   Mean   :1  
+##                                        3rd Qu.:  200.00   3rd Qu.:1  
+##                                        Max.   :51245.54   Max.   :1
 {% endhighlight %}
  
 I want to use affinity score or engagement score for my x-axis to see the impact of affinity on giving so I am going to trim my dataset so that I don't get heavily skewed results from outliers and also to improve readability.
