@@ -1,0 +1,111 @@
+---
+title: "Tea Time Lyric Match - Part 2"
+author: "Michael Pawlus"
+layout: post
+published: true
+status: publish
+draft: no
+---
+ 
+### Follow up function wrap for song lyric matching
+ 
+Following up on this [post](http://michaelpawlus.github.io/tttt_term_matching/) this is just a quick follow-up that takes the example from the last post and wraps it in a function. The function looks for trigrams, bigrams and word matches sans stop stop words. It then takes any of those three possible matches and puts them all together in one data frame.
+ 
+Here is the code with an example:
+ 
+
+{% highlight r %}
+library(geniusR)
+library(tidyverse)
+library(tidytext)
+ 
+## include a read in for 1,2, and 3 gram terms
+ 
+lyric_match <- function(artist1, title1, artist2, title2) {
+ 
+song1 <- genius_lyrics(artist = artist1, song = title1) 
+ 
+song2 <- genius_lyrics(artist = artist2, song = title2)
+ 
+song1_tri <- song1 %>%
+  unnest_tokens(trigram, text, token = "ngrams", n = 3) %>%
+  separate(trigram, c("word1", "word2", "word3"), sep = " ") %>%
+  count(word1, word2, word3, sort = TRUE)
+ 
+song2_tri <- song2 %>%
+  unnest_tokens(trigram, text, token = "ngrams", n = 3) %>%
+  separate(trigram, c("word1", "word2", "word3"), sep = " ") %>%
+  count(word1, word2, word3, sort = TRUE)
+ 
+common_tris <- song1_tri %>%
+  inner_join(song2_tri, by = c("word1","word2","word3")) %>%
+  count(word1, word2, word3, sort = TRUE)
+ 
+common_tris <- common_tris %>%
+  unite(word, word1, word2, word3)
+ 
+song1_bi <- song1 %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  count(word1, word2, sort = TRUE)
+ 
+song2_bi <- song2 %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  count(word1, word2, sort = TRUE)
+ 
+common_bis <- song1_bi %>%
+  inner_join(song2_bi, by = c("word1","word2")) %>%
+  count(word1, word2, sort = TRUE)
+ 
+common_bis <- common_bis %>%
+  unite(word, word1, word2)
+ 
+song1_words <- song1 %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE)
+ 
+song2_words <- song2 %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE)
+ 
+common_words <- song1_words %>%
+  inner_join(song2_words, by = "word") %>%
+  count(word, sort = TRUE)
+ 
+all_matches <- bind_rows(common_tris, common_bis, common_words)
+ 
+print(all_matches)
+ 
+}
+{% endhighlight %}
+ 
+Next, we can call this function:
+ 
+
+{% highlight r %}
+lyric_match("Orchestral Manoeuvres in the Dark", "Tesla Girls", "Oasis", "Morning Glory")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Joining, by = "word"
+## Joining, by = "word"
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## # A tibble: 2 x 2
+##      word     n
+##     <chr> <int>
+## 1 i_guess     1
+## 2   guess     1
+{% endhighlight %}
+ 
+So, was the link something like "guess" in all the lyrics or singers wondering about something? No. It was electricity. Tesla. (What's the Story) Morning Glory. "What's" sounds like "Watts". The last song was Everybody Hurts (Hertz). 
+ 
+The lyric matching function can be found [here](https://github.com/michaelpawlus/song_lyric_match)
