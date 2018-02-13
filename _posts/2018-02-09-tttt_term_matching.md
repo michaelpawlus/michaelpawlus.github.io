@@ -16,41 +16,7 @@ I have yet to win this game which has prompted me to try to see if I can gain an
 
 {% highlight r %}
 library(tidyverse)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## ── Attaching packages ───────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## ✔ tibble  1.3.4     ✔ purrr   0.2.4
-## ✔ tidyr   0.7.2     ✔ dplyr   0.7.4
-## ✔ readr   1.1.1     ✔ stringr 1.2.0
-## ✔ tibble  1.3.4     ✔ forcats 0.2.0
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## ── Conflicts ──────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ tidyr::complete()  masks RCurl::complete()
-## ✖ tidyr::expand()    masks Matrix::expand()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ dplyr::slice()     masks xgboost::slice()
-## ✖ purrr::transpose() masks data.table::transpose()
-{% endhighlight %}
-
-
-
-{% highlight r %}
+ 
 # read in the data
 t <- read_csv("https://raw.githubusercontent.com/michaelpawlus/michaelpawlus.github.io/master/images/tttt1.csv")
 {% endhighlight %}
