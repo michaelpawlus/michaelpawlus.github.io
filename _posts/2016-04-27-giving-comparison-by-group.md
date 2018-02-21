@@ -18,27 +18,6 @@ First, load the ggplot2 library (use install.packages("ggplot2") if you don't ha
 library(ggplot2)
 library(RCurl)
 {% endhighlight %}
-
-
-
-{% highlight text %}
-## Loading required package: bitops
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Attaching package: 'RCurl'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following object is masked from 'package:tidyr':
-## 
-##     complete
-{% endhighlight %}
  
 Then, read the file into R:
  

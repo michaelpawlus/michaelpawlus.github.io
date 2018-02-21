@@ -51,7 +51,7 @@ mens_age %>%
   labs(x = "Age", y = NULL, title = "Men's Figure Skating Medal Distribution", subtitle = "By Age - Split by Type")
 {% endhighlight %}
 
-![plot of chunk mens medals by age](/figures/mens medals by age-1.png)
+![plot of chunk mens_medals_by_age](/figures/mens_medals_by_age-1.png)
  
 So far 20 is looking pretty good for the Golden Age.
  
@@ -84,7 +84,7 @@ womens_age %>%
   labs(x = "Age", y = NULL, title = "Women's Figure Skating Medal Distribution", subtitle = "By Age - Split by Type")
 {% endhighlight %}
 
-![plot of chunk womens medals by age](/figures/womens medals by age-1.png)
+![plot of chunk womens_medals_by_age](/figures/womens_medals_by_age-1.png)
  
 19 has the edge on 20 for the Women's Figure Skating dataset but 20 turns out to be a great guess borne out by data.
  
@@ -115,7 +115,7 @@ mens_dobs %>%
   labs(x = "Birth Month", y = NULL, title = "Men's Figure Skating Medal Distribution", subtitle = "By Birth Month - Split by Type")
 {% endhighlight %}
 
-![plot of chunk mens medals by birth month](/figures/mens medals by birth month-1.png)
+![plot of chunk mens_medals_by_birth_month](/figures/mens_medals_by_birth_month-1.png)
  
 No extremely distinctive pattern. Are there possibly two age cut-off dates? One for June 1 and one for Dec 1?
  
@@ -143,7 +143,7 @@ womens_dobs %>%
   labs(x = "Birth Month", y = NULL, title = "Women's Figure Skating Medal Distribution", subtitle = "By Birth Month - Split by Type")
 {% endhighlight %}
 
-![plot of chunk womens medals by birth month not split](/figures/womens medals by birth month not split-1.png)
+![plot of chunk womens_medals_by_birth_month_not_split](/figures/womens_medals_by_birth_month_not_split-1.png)
  
 Other than March seeming to be an exceptionally bad month to be born if you want to medal there is almost no pattern at all. Alright, let's drop the fill:
  
@@ -161,7 +161,7 @@ womens_dobs %>%
   labs(x = "Birth Month", y = NULL, title = "Women's Figure Skating Medal Distribution", subtitle = "By Birth Month - Split by Type")
 {% endhighlight %}
 
-![plot of chunk womens by birth month split](/figures/womens by birth month split-1.png)
+![plot of chunk womens_by_birth_month_split](/figures/womens_by_birth_month_split-1.png)
  
 Looking back at the Men's plot and then at this one we can see that 50% of male gold medalists and 55% of female gold medalists were born in May, June or July. 
  

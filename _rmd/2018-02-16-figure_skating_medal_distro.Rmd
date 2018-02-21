@@ -15,7 +15,7 @@ So, is 20 the golden age?
 
 First, let's get the table and extract the age for male figure skaters:
 
-```{r mens figure skating data}
+```{r mens_figure_skating_data}
 
 ## medals by age
 
@@ -38,7 +38,7 @@ mens_years <- str_extract(mens_age$Age, '\\d+(?=\\s+years)')
 
 Let's see what the distribution looks like for Men's Figure Skating:
 
-```{r mens medals by age}
+```{r mens_medals_by_age}
 
 #ggplot
 mens_age %>%
@@ -55,7 +55,7 @@ So far 20 is looking pretty good for the Golden Age.
 
 Now, let's get the table for female figure skaters:
 
-```{r womens figure skating data}
+```{r womens_figure_skating_data}
 
 # read in table for women's  
 womens_age <- url %>%
@@ -69,7 +69,7 @@ womens_years <- str_extract(womens_age$Age, '\\d+(?=\\s+years)')
 
 And we plot this out in the same way:
 
-```{r womens medals by age}
+```{r womens_medals_by_age}
 
 #ggplot
 womens_age %>%
@@ -88,7 +88,7 @@ So, that's settled but as I looked at the data I had one more question. I wonder
 
 So, let's start by looking at the birth months for the male figure skating medalists:
 
-```{r mens medals by birth month}
+```{r mens_medals_by_birth_month}
 
 # extract unique birthdays
 mens_dobs <- mens_age %>% 
@@ -117,7 +117,7 @@ Let's take a look at the distribution for female figure skating medalists:
 
 Before we look at the exact same plot let me just tease this out a bit and let you experience this in the order that I did. So, first we just look at distribution for medal winners without splitting by type:
 
-```{r womens medals by birth month not split}
+```{r womens_medals_by_birth_month_not_split}
 
 # extract unique birthdays
 womens_dobs <- womens_age %>% 
@@ -139,7 +139,7 @@ womens_dobs %>%
 
 Other than March seeming to be an exceptionally bad month to be born if you want to medal there is almost no pattern at all. Alright, let's drop the fill:
 
-```{r womens by birth month split}
+```{r womens_by_birth_month_split}
 
 # ggplot
 womens_dobs %>%
