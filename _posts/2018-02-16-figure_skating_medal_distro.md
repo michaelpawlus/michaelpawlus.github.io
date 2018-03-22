@@ -21,70 +21,7 @@ First, let's get the table and extract the age for male figure skaters:
  
 library(tidyverse)
 library(rvest)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Loading required package: xml2
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Attaching package: 'rvest'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following object is masked from 'package:purrr':
-## 
-##     pluck
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following object is masked from 'package:readr':
-## 
-##     guess_encoding
-{% endhighlight %}
-
-
-
-{% highlight r %}
 library(lubridate)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Attaching package: 'lubridate'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following objects are masked from 'package:data.table':
-## 
-##     hour, isoweek, mday, minute, month, quarter, second, wday,
-##     week, yday, year
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following object is masked from 'package:base':
-## 
-##     date
-{% endhighlight %}
-
-
-
-{% highlight r %}
 library(ggthemes)
  
 url <- "https://en.wikipedia.org/wiki/List_of_Olympic_medalists_in_figure_skating_by_age"

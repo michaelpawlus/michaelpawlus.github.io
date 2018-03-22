@@ -15,7 +15,9 @@ Let's start by stating that Burnley are having an incredible Premier League camp
  
 After hearing this sentiment echoed consistently by the manager, I had the idea to look at a metric for evaluating just how fine the margins have been. While all goals are valuable, the goal that makes the total scored one greater than the other team is the most valuable. 
  
-For people that don't follow this sport, 3 points are awarded for a win and 1 point for a draw  (As an American, saying the name of this sport is problematic and both options are sub-optimal). So, we can somewhat easily calculate the point value of every goal to compare Burnley's margins with the rest of the league.
+For people that don't follow this sport, 3 points are awarded for a win and 1 point for a draw  (As an American, saying the name of this sport is problematic and both options are sub-optimal). Goals above and beyond the goal needed to win have value in the event of a points tie at the end of the season as well as providing psychological and entertainment value however hopefully we can agree that the goal needed to win has the most value. 
+ 
+In some ways the metric we are building treats goals above and beyond the one needed to win as well as those scored in a loss as wasted effort. While not entirely true, for many teams it is critical to get as many points as possible from the relatively few goals they are able to score. With all this said, we can now somewhat easily calculate the point value of every goal to compare Burnley's margins or maybe better yet their efficiency with the rest of the league.
  
 #### Load the Data and Libraries
  
@@ -92,49 +94,37 @@ Next, we will create summary tables for all possible results and stack these so 
 home_wins <- epl %>%
   filter(FTR == "H") %>%
   select(HomeTeam, FTHG, FTR) %>%
-  mutate(team = HomeTeam) %>%
-  mutate(goals = FTHG) %>%
-  select(-HomeTeam, -FTHG) %>%
+  rename(team = HomeTeam, goals = FTHG) %>%
   mutate(points = 3)
  
 home_loss <- epl %>%
   filter(FTR == "A") %>%
   select(HomeTeam, FTHG, FTR) %>%
-  mutate(team = HomeTeam) %>%
-  mutate(goals = FTHG) %>%
-  select(-HomeTeam, -FTHG) %>%
+  rename(team = HomeTeam, goals = FTHG) %>%
   mutate(points = 0)
  
 away_wins <- epl %>%
   filter(FTR == "A") %>%
   select(AwayTeam, FTAG, FTR) %>%
-  mutate(team = AwayTeam) %>%
-  mutate(goals = FTAG) %>%
-  select(-AwayTeam, -FTAG) %>%
+  rename(team = AwayTeam, goals = FTAG) %>%
   mutate(points = 3)
  
 away_loss <- epl %>%
   filter(FTR == "H") %>%
   select(AwayTeam, FTAG, FTR) %>%
-  mutate(team = AwayTeam) %>%
-  mutate(goals = FTAG) %>%
-  select(-AwayTeam, -FTAG) %>%
+  rename(team = AwayTeam, goals = FTAG) %>%
   mutate(points = 0)
  
 home_draws <- epl %>%
   filter(FTR == "D") %>%
   select(HomeTeam, FTHG, FTR) %>%
-  mutate(team = HomeTeam) %>%
-  mutate(goals = FTHG) %>%
-  select(-HomeTeam, -FTHG) %>%
+  rename(team = HomeTeam, goals = FTHG) %>%
   mutate(points = 1)
  
 away_draws <- epl %>%
   filter(FTR == "D") %>%
   select(AwayTeam, FTAG, FTR) %>%
-  mutate(team = AwayTeam) %>%
-  mutate(goals = FTAG) %>%
-  select(-AwayTeam, -FTAG) %>%
+  rename(team = AwayTeam, goals = FTAG) %>%
   mutate(points = 1)
  
 goals_to_points <- bind_rows(
@@ -171,9 +161,9 @@ goals_to_points %>%
  
 #### Dizzying Heights
  
-Without the ability to pay the salaries that other teams pay, Burnley need to be as efficient as possible. Our plot shows that they have, in fact, far outpaced the rest of the league in value per goal. At one point in the season, Burnley were as high as fourth in the league table -- a position described as "dizzying heights" by many pundits. However, as of this post, Burnley have a real chance to finish in the Top 6 a segment of the league usually reserved for the same six teams every year. 
+Without the ability to pay the salaries that other teams pay, Burnley need to be as efficient as possible. Our plot shows that they have, in fact, far outpaced the rest of the league in value per goal. At one point in the season, Burnley were as high as fourth in the league table -- a position described as "dizzying heights" by many pundits. However, as of this post, Burnley have a real chance to finish in the Top 6 -- a segment of the league usually reserved for the same six teams every year. 
  
-Also, as of this post, I am 15th in a Kaggle competition and if the results go my way for the remainder of the Women's NCAA Basketball Tournament I think I can finish "in the money" for the first time ever.  
+Also, as of this post, I am 15th in a Kaggle competition and I think there is a real chance I can finish Top 3 for the first time ever.  
  
  
 ![](../figures/kaggle_board_wncaa.png)  

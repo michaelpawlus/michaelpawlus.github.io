@@ -223,11 +223,6 @@ With all of that out of the way, to start the conversation and add a few ideas o
 First here is the break down of the number of donors in each category.  It's not even but it is not overly dominated by any one category either which is good.
  
  
-
-{% highlight text %}
-## Error in function (type, msg, asError = TRUE) : Failed to connect to raw.githubusercontent.com port 443: Operation timed out
-{% endhighlight %}
-
 ![plot of chunk unnamed-chunk-9](/figures/unnamed-chunk-9-1.png)
  
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.

@@ -18,27 +18,6 @@ First, load the ggplot2 library (use install.packages("ggplot2") if you don't ha
 library(ggplot2)
 library(RCurl)
 {% endhighlight %}
-
-
-
-{% highlight text %}
-## Loading required package: bitops
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## 
-## Attaching package: 'RCurl'
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## The following object is masked from 'package:tidyr':
-## 
-##     complete
-{% endhighlight %}
  
 Then, read the file into R:
  
@@ -119,4 +98,4 @@ Then, use a faceted plot to compare giving between majors as well as the relativ
 qplot(aff_total, log10(fy14), data = ad4, color = Major, facets=~Major) + stat_smooth(method="lm")
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-18](/figures/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-7](/figures/unnamed-chunk-7-1.png)
