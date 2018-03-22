@@ -77,12 +77,12 @@ tl %>% select(Link)
 
 {% highlight text %}
 ## # A tibble: 5 x 1
-##                                                     Link
-##                                                    <chr>
-## 1      "All songs contain \"Joan of Arc\" in the lyrics"
-## 2                      A reference to 4 AM in the lyrics
-## 3           "All songs begin with phrase \"I was born\""
-## 4        "All lyrics include phrase \"Shut your mouth\""
+##   Link                                                  
+##   <chr>                                                 
+## 1 "All songs contain \"Joan of Arc\" in the lyrics"     
+## 2 A reference to 4 AM in the lyrics                     
+## 3 "All songs begin with phrase \"I was born\""          
+## 4 "All lyrics include phrase \"Shut your mouth\""       
 ## 5 "All lyrics contain the phrase \"She's gone to stay\""
 {% endhighlight %}
  
@@ -114,8 +114,8 @@ song1 %>%
 ## # A tibble: 2 x 4
 ##   word1 word2 word3     n
 ##   <chr> <chr> <chr> <int>
-## 1   and     i  know     1
-## 2  gone    to  stay     1
+## 1 and   i     know      1
+## 2 gone  to    stay      1
 {% endhighlight %}
  
 My next steps is to wrap this all in a function and add a check that first looks for matching trigrams and then finding none looks for bigrams and failing that lists all matching terms ommitting stop words. I will post that update soon.

@@ -51,9 +51,6 @@ My approach to problems like this is to get a decent sized set of data points to
 This next part is just the report out from the model.  I cannot seem to hide it so just scroll through this to get to the plots.
  
 
-{% highlight text %}
-## Error in library(MLmetrics): there is no package called 'MLmetrics'
-{% endhighlight %}
  
 Once the model is done, I like to look at the importance of the features included:
  
@@ -67,7 +64,42 @@ I should note that at present this model is not performing too well but it is ju
  
 
 {% highlight text %}
-## Error in MultiLogLoss(pred$target, pred[, 2:5]): could not find function "MultiLogLoss"
+## Warning in model.matrix.default(~0 + ., data.frame(as.character(y_true))):
+## term names will be truncated
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in model.matrix.default(~0 + ., data.frame(as.character(y_true))):
+## term names will be truncated
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in model.matrix.default(~0 + ., data.frame(as.character(y_true))):
+## term names will be truncated
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in model.matrix.default(~0 + ., data.frame(as.character(y_true))):
+## term names will be truncated
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Warning in y_true * log(y_pred): longer object length is not a multiple of
+## shorter object length
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## Error in MultiLogLoss(pred$target, pred[, 2:5]): dims [product 16] do not match the length of object [2148]
 {% endhighlight %}
  
 We are a long way off.
@@ -191,6 +223,11 @@ With all of that out of the way, to start the conversation and add a few ideas o
 First here is the break down of the number of donors in each category.  It's not even but it is not overly dominated by any one category either which is good.
  
  
+
+{% highlight text %}
+## Error in function (type, msg, asError = TRUE) : Failed to connect to raw.githubusercontent.com port 443: Operation timed out
+{% endhighlight %}
+
 ![plot of chunk unnamed-chunk-9](/figures/unnamed-chunk-9-1.png)
  
 Next we can look at age which I think is the most revealing.  I was very surprised that so many young people chose to give over the phone.  The popular narrative that I hear is that young people do not answer their phones but this appears to tell a different story.

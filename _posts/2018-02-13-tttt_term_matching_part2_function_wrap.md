@@ -100,10 +100,10 @@ lyric_match("Orchestral Manoeuvres in the Dark", "Tesla Girls", "Oasis", "Mornin
 
 {% highlight text %}
 ## # A tibble: 2 x 2
-##      word     n
-##     <chr> <int>
+##   word        n
+##   <chr>   <int>
 ## 1 i_guess     1
-## 2   guess     1
+## 2 guess       1
 {% endhighlight %}
  
 So, was the link something like "guess" in all the lyrics or singers wondering about something? No. It was electricity. Tesla. (What's the Story) Morning Glory. "What's" sounds like "Watts". The last song was Everybody Hurts (Hertz). 
