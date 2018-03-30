@@ -2,8 +2,8 @@
 title: "Burnley Margins"
 author: "Michael Pawlus"
 layout: post
-published: no
-status: process
+published: true
+status: publish
 draft: no
 ---
 

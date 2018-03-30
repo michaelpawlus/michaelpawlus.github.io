@@ -2,8 +2,8 @@
 title: "Tea Time Lyric Match - Part 2"
 author: "Michael Pawlus"
 layout: post
-published: no
-status: process
+published: true
+status: publish
 draft: no
 ---
 

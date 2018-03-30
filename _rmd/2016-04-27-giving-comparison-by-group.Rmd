@@ -2,8 +2,8 @@
 layout: post
 title: Giving By Major
 author: Michael Pawlus
-published: false
-status: process
+published: true
+status: publish
 draft: false
 ---
 

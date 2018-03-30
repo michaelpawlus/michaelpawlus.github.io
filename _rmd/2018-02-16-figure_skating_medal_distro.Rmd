@@ -2,8 +2,8 @@
 title: "Figure Skating Medal Distribution"
 author: "Michael Pawlus"
 layout: post
-published: no
-status: process
+published: true
+status: publish
 draft: no
 ---
 
